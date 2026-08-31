@@ -89,7 +89,7 @@ trajectories offline — `python score.py --table runs/recorded/* --controls`.
 **Read the controls first.**
 
 | Strategy | Resolved | Disposition | Amount | False approvals | Overpaid | Underpaid |
-|---|---:|---:|---:|---:|---:|---:|
+| --- | ---: | ---: | ---: | ---: | ---: | ---: |
 | always approve | 41.7% | 50.0% | 41.7% | 100.0% | $56,922.28 | $32.50 |
 | always hold | 16.7% | 16.7% | 33.3% | 0.0% | $0.00 | $112,462.26 |
 | always escalate | 0.0% | 8.3% | 41.7% | 0.0% | $56,922.28 | $32.50 |
@@ -103,7 +103,7 @@ approvals" is never reported on its own here.
 **The ladder.** Same code path throughout; each row adds the lever named in it.
 
 | Version | Lever added | Resolved | Citations | False appr. | $/case | Verdict |
-|---|---|---:|---:|---:|---:|---|
+| --- | --- | ---: | ---: | ---: | ---: | --- |
 | v0-naive | — | 41.7% | 76.2% | 0.0% | $0.0230 | level with always-approve |
 | **v1-baseline** | **written policy + strict schema** | **95.8%** | 95.2% | 0.0% | $0.0229 | kept |
 | v2-tools | deterministic calculators | 95.8% | 61.9% | 8.3% | $0.0668 | kept — for audit, not accuracy |
@@ -237,6 +237,13 @@ the log is the only endpoint that writes anything. The console defaults to **rep
 reads the committed trajectories, needs no credential, makes no network calls, and shows the
 same numbers `score.py` prints.
 
+**Hosted, if you would rather not clone:** <https://ogheneruno.github.io/ClearQueue/> is that
+replay half, pre-rendered by `build_static.py` and published from the `gh-pages` branch. Every
+case, evidence file, trajectory, packet and score is the committed data, and ground truth is
+still behind the Reveal button. Two things are missing there and say so on screen: "run it now"
+needs a credential, which is never published, and signing an approval needs somewhere to write.
+For those, clone and run `python serve.py`.
+
 ---
 
 ## 6. Honest notes
@@ -350,14 +357,12 @@ because an instruction nobody checks is a hope with good grammar. And when a met
 not optimising moves, **run it again before you explain it** — a story that fits one run is
 not a finding.
 
-
-
 ---
 
 ## Repository
 
 | | |
-|---|---|
+| --- | --- |
 | `REPRODUCTION.md` | clean-machine guide — one command, no credential |
 | `CHANGELOG.md` | the improvement changelog, each entry tied to a measurement |
 | `policy/ap_policy.md` | AP-POL-2026-03, the shared source of truth |
@@ -366,3 +371,4 @@ not a finding.
 | `make_counterfactual.py` | rebuilds the check-off run that measures the v6 lever, offline |
 | `out/packets/` | the human review packets |
 | `serve.py` + `webapp/` | the local console — `python serve.py`, replay by default, stdlib only |
+| `build_static.py` | pre-renders the replay half of that console for GitHub Pages |

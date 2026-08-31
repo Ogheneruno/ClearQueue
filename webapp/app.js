@@ -53,7 +53,7 @@ const DISP_LABEL = {
   HOLD_PRICE_VARIANCE: 'Hold — price variance',
   HOLD_QUANTITY_VARIANCE: 'Hold — quantity variance',
   DUPLICATE_REJECT: 'Reject — duplicate',
-  ESCALATE_HUMAN: 'Escalate to a person',
+  ESCALATE_HUMAN: 'Escalate — reviewer decides',
 };
 
 const DISP_MEANING = {

@@ -129,9 +129,12 @@ tr.ship td:first-child { box-shadow: inset 2px 0 0 var(--accent); }
 
 /* ---------- pills ---------- */
 
+/* Pills carry a written label now, not a schema enum, so they are set in the body face
+   rather than the mono one. The enum is in the title attribute and printed in full in the
+   verdict box. */
 .pill {
-  display: inline-block; padding: 1px 7px; border-radius: 999px;
-  font-size: 11px; font-family: var(--mono); white-space: nowrap;
+  display: inline-block; padding: 1px 9px; border-radius: 999px;
+  font-size: 12px; white-space: nowrap;
   border: 1px solid currentColor;
 }
 .pill.approve   { color: var(--good); }
@@ -190,6 +193,10 @@ pre.file {
 
 .verdictbox { border: 1px solid var(--line); border-radius: 7px; padding: 12px 14px; background: var(--panel-2); }
 .verdictbox .amt { font-size: 27px; font-weight: 650; letter-spacing: -0.02em; margin: 6px 0 2px; }
+/* The schema codes, kept on screen but demoted. A clerk reads the label above; a reviewer
+   cross-checking expected.json reads this line. */
+.verdictbox .codeline { margin-top: 8px; padding-top: 7px; border-top: 1px dashed var(--line); }
+.verdictbox .codeline code { font-size: 10.5px; margin-right: 6px; }
 .rationale { color: var(--muted); font-size: 12.5px; margin-top: 10px; white-space: pre-wrap; }
 
 .truthbox { margin-top: 12px; border: 1px dashed var(--line); border-radius: 7px; padding: 10px 12px; }

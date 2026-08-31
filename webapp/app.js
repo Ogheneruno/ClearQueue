@@ -37,6 +37,43 @@ const DISP_CLASS = {
   ESCALATE_HUMAN: 'escalate',
 };
 
+/* The six dispositions and three approver roles are schema enums: the model emits them, the
+   scorer compares them against expected.json, and every trajectory records them verbatim.
+   They are not display strings and must never be translated anywhere those three things
+   meet. But an AP clerk should not be reading SCREAMING_SNAKE_CASE off a screen, so the
+   console renders a label and keeps the code as a tooltip -- and prints the code in full on
+   the case detail, where a reviewer cross-checking ground truth actually needs it.
+
+   DISP_MEANING mirrors packet.py's DISPOSITION_MEANING word for word. Two surfaces telling a
+   reviewer different things about the same verdict is a defect, so if one changes, change
+   both. */
+const DISP_LABEL = {
+  APPROVE_FOR_PAYMENT: 'Approve for payment',
+  SHORT_PAY: 'Pay reduced amount',
+  HOLD_PRICE_VARIANCE: 'Hold — price variance',
+  HOLD_QUANTITY_VARIANCE: 'Hold — quantity variance',
+  DUPLICATE_REJECT: 'Reject — duplicate',
+  ESCALATE_HUMAN: 'Escalate to a person',
+};
+
+const DISP_MEANING = {
+  APPROVE_FOR_PAYMENT: 'Release for payment on approval.',
+  SHORT_PAY: 'Pay the reduced amount below; the balance is disputed.',
+  HOLD_PRICE_VARIANCE: 'Do not pay. Buyer action needed on price.',
+  HOLD_QUANTITY_VARIANCE: 'Do not pay. Receiving action needed on quantity.',
+  DUPLICATE_REJECT: 'Do not pay. Already invoiced.',
+  ESCALATE_HUMAN: 'Do not pay. Reviewer decides; the figure below is a recommendation.',
+};
+
+const ROLE_LABEL = {
+  AP_CLERK: 'AP clerk',
+  AP_MANAGER: 'AP manager',
+  CONTROLLER: 'Controller',
+};
+
+const dispLabel = (d) => DISP_LABEL[d] || d || 'No verdict';
+const roleLabel = (r) => ROLE_LABEL[r] || r || 'n/a';
+
 /* ---------------------------------------------------------------- utilities */
 
 const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) =>
@@ -48,8 +85,12 @@ const money = (n, cur) =>
       (cur ? ' ' + cur : '')
     : '—';
 
+/* The raw enum rides along in the tooltip rather than on the face of the pill: a clerk
+   reading the queue does not need it, and a reviewer checking a verdict against ground truth
+   can hover, or read it in full on the case detail. */
 const pill = (disp) =>
-  `<span class="pill ${DISP_CLASS[disp] || 'none'}">${esc(disp || 'NO VERDICT')}</span>`;
+  `<span class="pill ${DISP_CLASS[disp] || 'none'}" title="${esc(disp || 'no verdict')}">` +
+  `${esc(dispLabel(disp))}</span>`;
 
 const bar = (pct, kind = '') =>
   `<div class="bar"><i class="${kind}" style="width:${Math.max(0, Math.min(100, pct))}%"></i></div>`;
@@ -187,7 +228,7 @@ function renderQueueTable(rows) {
     const verdictCell = r.false_approval
       ? '<span class="cross">&#10007; false approval</span>'
       : ok ? '<span class="tick">&#10003; correct</span>'
-           : `<span class="cross">&#10007;</span> <span class="dim small">truth: ${esc(r.true_disposition)}</span>`;
+           : `<span class="cross">&#10007;</span> <span class="dim small">truth: ${esc(dispLabel(r.true_disposition))}</span>`;
     const cites = (r.citations || []).length
       ? r.citations.map((c) => `<span class="chip">${esc(c)}</span>`).join('')
       : '<span class="dim small">none</span>';
@@ -199,7 +240,7 @@ function renderQueueTable(rows) {
       <td>${pill(r.predicted)}${(r.defects || []).length
         ? `<div class="dim small" style="margin-top:3px">${r.defects.length} defect${r.defects.length > 1 ? 's' : ''}</div>` : ''}</td>
       <td class="num">${money(r.payable_amount)}</td>
-      <td class="mono small">${esc(r.required_approver_role)}</td>
+      <td class="small" title="${esc(r.required_approver_role || '')}">${esc(roleLabel(r.required_approver_role))}</td>
       <td class="num">${r.tool_calls}</td>
       <td style="max-width:230px">${cites}</td>
       <td class="small">${verdictCell}</td>
@@ -280,8 +321,13 @@ function renderVerdict(d) {
     <div class="verdictbox">
       <div>${pill(v.disposition)}</div>
       <div class="amt">${money(v.payable_amount, v.currency)}</div>
+      <div class="small muted">${esc(DISP_MEANING[v.disposition] || 'No verdict was produced.')}</div>
       <div class="small muted">payable if approved &middot; requires
-        <code>${esc(v.required_approver_role || 'n/a')}</code></div>
+        <b>${esc(roleLabel(v.required_approver_role))}</b></div>
+      <div class="small dim codeline">schema codes &mdash;
+        <code>${esc(v.disposition || 'none')}</code>
+        <code>${esc(v.required_approver_role || 'n/a')}</code>
+        <span class="dim">what the model emitted and what the scorer compares</span></div>
       <div style="margin-top:10px">${defects}</div>
       <div class="rationale">${esc(v.rationale || '')}</div>
       <div class="small dim" style="margin-top:10px">
@@ -347,7 +393,7 @@ function eventLabel(e) {
       return [`revision applied &mdash; verdict changed: ${e.changed ? 'yes' : 'no'}`,
               JSON.stringify(e, null, 2)];
     case 'verdict':
-      return [`<b>final verdict</b> &mdash; ${esc(e.disposition)} at ${money(e.payable_amount)}`,
+      return [`<b>final verdict</b> &mdash; ${esc(dispLabel(e.disposition))} at ${money(e.payable_amount)}`,
               JSON.stringify(e, null, 2)];
     default:
       return [esc(e.type), JSON.stringify(e, null, 2)];

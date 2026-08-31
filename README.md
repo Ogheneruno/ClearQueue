@@ -144,7 +144,7 @@ that every rung from v2 onward approves. See §6.
 
 One invoice, one pass:
 
-```
+```architecture
      evidence                    policy AP-POL-2026-03
    po · receipt · invoice              (13 clauses)
    vendor · contract · email                │

@@ -15,6 +15,7 @@ import argparse
 import json
 import sys
 import time
+from datetime import datetime, timezone
 from pathlib import Path
 
 from clearqueue import packet
@@ -24,6 +25,19 @@ from clearqueue.llm import AnthropicClient, AuthError, MockLLM
 from clearqueue.memory import VendorMemory
 
 ROOT = Path(__file__).parent
+
+
+def rel(p: Path) -> str:
+    """Repo-relative POSIX path.
+
+    Printed paths and recorded paths must not carry an absolute home directory: it leaks a
+    username into committed artifacts and onto the screen during a demo, and it makes the
+    approval log unreadable on any machine but the one that produced it.
+    """
+    try:
+        return p.resolve().relative_to(ROOT.resolve()).as_posix()
+    except ValueError:
+        return p.as_posix()
 
 
 def mock_responder(cases_dir: Path):
@@ -120,8 +134,8 @@ def run_version(version, cases: list[str], cases_dir: Path, out_root: Path,
         print(f"\n  {len(results)} review packets -> out/packets/")
         print(f"  queue summary          -> out/queue_report.md")
 
-    print(f"\n  wall clock {time.time() - started:.1f}s   traces -> {out_root.as_posix()}/")
-    print(f"  score it:  python score.py --run {out_root.as_posix()}")
+    print(f"\n  wall clock {time.time() - started:.1f}s   traces -> {rel(out_root)}/")
+    print(f"  score it:  python score.py --run {rel(out_root)}")
     return results
 
 
@@ -140,6 +154,17 @@ def review(out_root: Path, cases_dir: Path) -> int:
     print(f"\nReview queue: {len(verdict_files)} exceptions awaiting decision.")
     print("ClearQueue has paid nothing. Each item below needs your sign-off.\n")
 
+    # An approval record without a name and a time is not an audit trail. Ask once.
+    try:
+        reviewer = input("Reviewer name for the approval log > ").strip()
+    except EOFError:
+        print("\nNo interactive terminal available — review needs a real console.")
+        print("Run this in a terminal: python run.py --review")
+        return 1
+    if not reviewer:
+        print("A reviewer name is required; nothing was recorded.")
+        return 1
+
     for vf in verdict_files:
         v = json.loads(vf.read_text(encoding="utf-8"))
         case_id = v.get("case_id", vf.parent.name)
@@ -156,7 +181,7 @@ def review(out_root: Path, cases_dir: Path) -> int:
             print(f"evidence: {', '.join(v['citations'])}")
         print(f"\n{v.get('rationale', '')}\n")
         if pkt.exists():
-            print(f"full packet: {pkt.as_posix()}")
+            print(f"full packet: {rel(pkt)}")
         try:
             choice = input("\n[a]pprove  [r]eject  [e]scalate  [s]kip  [q]uit > ").strip().lower()
         except EOFError:
@@ -170,12 +195,18 @@ def review(out_root: Path, cases_dir: Path) -> int:
             "case_id": case_id,
             "recommended": v.get("disposition"),
             "recommended_amount": amt,
+            "required_approver_role": v.get("required_approver_role"),
             "human_decision": action,
+            "reviewer": reviewer,
+            "decided_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
+            "trajectory": rel(vf.parent / "trajectory.jsonl"),
         })
         print(f"  -> {action}\n")
 
     if decisions:
-        with decisions_path.open("w", encoding="utf-8") as fh:
+        # Append. An approval log that overwrites the previous session's decisions is not
+        # a log; a second reviewer working the same queue must not erase the first.
+        with decisions_path.open("a", encoding="utf-8") as fh:
             for d in decisions:
                 fh.write(json.dumps(d) + "\n")
         approved = sum(1 for d in decisions if d["human_decision"] == "APPROVED")
@@ -183,7 +214,7 @@ def review(out_root: Path, cases_dir: Path) -> int:
                        if d["human_decision"] == "APPROVED")
         print(f"\n{approved}/{len(decisions)} approved, {released:,.2f} released for payment "
               f"by human decision.")
-        print(f"Recorded in {decisions_path.as_posix()}")
+        print(f"Recorded in {rel(decisions_path)}")
     return 0
 
 

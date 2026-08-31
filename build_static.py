@@ -164,6 +164,10 @@ def build(out: Path) -> None:
     shutil.copyfile(ROOT / "webapp" / "app.js", out / "static" / "app.js")
     shutil.copyfile(ROOT / "webapp" / "style.css", out / "static" / "style.css")
 
+    # The published site redistributes app.js and style.css, so it carries their terms with
+    # them rather than leaving them on a branch nobody browsing the site will look at.
+    shutil.copyfile(ROOT / "LICENSE", out / "LICENSE")
+
     html = (ROOT / "webapp" / "index.html").read_text(encoding="utf-8")
     for before, after in (('href="/static/style.css"', 'href="static/style.css"'),
                           ('src="/static/app.js"', 'src="static/app.js"')):

@@ -372,3 +372,17 @@ not a finding.
 | `out/packets/` | the human review packets |
 | `serve.py` + `webapp/` | the local console — `python serve.py`, replay by default, stdlib only |
 | `build_static.py` | pre-renders the replay half of that console for GitHub Pages |
+| `LICENSE` | MIT |
+
+---
+
+## Licence
+
+MIT — see [`LICENSE`](LICENSE). That covers the code and the dataset alike: the 24 cases, the
+correspondence, the contracts and AP-POL-2026-03 are all synthetic and hand-authored for this
+project. Every vendor, invoice number, email and price in `cases/` is invented. No real
+supplier, customer or invoice appears anywhere in this repository, and none of it is derived
+from any employer's data.
+
+Take the cases and score your own agent against them if they are useful to you — that is
+rather the point of publishing ground truth.

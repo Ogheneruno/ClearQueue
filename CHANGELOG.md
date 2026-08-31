@@ -643,3 +643,27 @@ policy). Ground truth you have to argue about is not ground truth.
 
 The 14-case ladder run in progress at the time was killed rather than finished. It would
 have cost about forty minutes and produced a flat line measuring nothing.
+
+---
+
+## Not a version: the console
+
+`serve.py` and `webapp/` are not a lever and were never scored. They changed nothing about
+the agent and appear in no table above. The entry exists so the file is not in the tree
+unexplained.
+
+The reproduction path was terminal-only, which meant the only way to look at a decision was
+to read JSONL. The console serves the committed trajectories over the standard library's
+`http.server` — no framework, no CDN, no web fonts, so the page renders with the network
+unplugged, which is the same property `REPRODUCTION.md` already claims for scoring. Its
+"run it now" button calls the same `solve_case()` that `run.py` calls; there is no
+demo-only path in it.
+
+One thing here is a measurement decision rather than a UI decision. The console offers
+three data modes, and **the mock is the always-approve control** — that equality is stage 4
+of `verify.py`. So a mock-driven walkthrough shows this system approving all 24 invoices at
+the billed amount, citing nothing, at 41.7%. It is a correct demonstration that the harness
+runs and a completely false impression of the agent. The console therefore defaults to
+replay and prints a warning box when mock is selected, rather than letting 41.7% be read as
+a result. That is the same failure this changelog keeps recording in other forms: a number
+that is accurate and means something other than what it looks like.

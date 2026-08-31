@@ -212,8 +212,21 @@ def control_verdicts(truth: dict[str, dict], cases_dir: Path, strategy: str) -> 
 # Reporting
 # --------------------------------------------------------------------------------------
 
+# A glob over runs/recorded/* comes back alphabetical, which interleaves the ladder: `final`
+# lands third and the rungs read out of order. The table is meant to be read top to bottom as
+# the build history, so expansion is ordered by the ladder and anything unrecognised (the
+# counterfactual, a scratch run) sorts after it by name.
+_TABLE_ORDER = ["v0-naive", "v1-baseline", "v2-tools", "v3-evidence", "v4-verifier",
+                "v5-memory", "vX-confidence", "v3-rerun-unenforced", "final"]
+
+
+def ladder_order(path: str) -> tuple[int, str]:
+    name = Path(path).name
+    return (_TABLE_ORDER.index(name), "") if name in _TABLE_ORDER else (len(_TABLE_ORDER), name)
+
+
 HEADERS = [
-    ("label", "Run", 26),
+    ("label", "Run", 28),
     ("resolution_accuracy", "Resolved%", 10),
     ("disposition_accuracy", "Disp%", 7),
     ("amount_accuracy", "Amt%", 7),
@@ -402,7 +415,7 @@ def main() -> int:
     for opt in (args.compare, args.table):
         if opt:
             for pattern in opt:
-                expanded = sorted(glob.glob(pattern))
+                expanded = sorted(glob.glob(pattern), key=ladder_order)
                 targets.extend(expanded if expanded else [pattern])
 
     for t in targets:

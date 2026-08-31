@@ -1,0 +1,30 @@
+From: sales@kestrel-industrial.example
+To: dele.fashanu@northgate-manufacturing.example
+Date: Thu, 26 Feb 2026 11:02:00 +0000
+Subject: PO-4405 - request for surcharge approval
+
+Dele,
+
+The conduit mill has applied an alloy surcharge to our March allocation. To ship PO-4405
+complete this week we would need to pass through a 6% surcharge on the conduit line only.
+If that is not acceptable we can hold the order until April at the original price.
+
+Please confirm either way.
+
+Tunde Alabi
+Kestrel Industrial Supply
+
+--- reply ---
+
+From: dele.fashanu@northgate-manufacturing.example
+To: sales@kestrel-industrial.example
+Date: Thu, 26 Feb 2026 15:47:00 +0000
+Subject: RE: PO-4405 - request for surcharge approval
+
+Tunde,
+
+Approved - up to 6% on PO-4405, conduit line only. We need it on site this week so please
+ship complete. This approval does not extend to any other open PO.
+
+Dele Fashanu
+Procurement, Northgate Manufacturing

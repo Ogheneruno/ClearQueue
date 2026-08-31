@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4406",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Priya Raman",
+  "po_date": "2026-02-14",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Archive Storage Box",
+      "quantity": 100,
+      "uom": "EACH",
+      "unit_price": 9.5,
+      "amount": 950.0
+    }
+  ]
+}

@@ -1,0 +1,29 @@
+{
+  "invoice_number": "INV-5641",
+  "vendor_name_as_billed": "Kestrel Industrial Supply",
+  "po_number": "PO-4409",
+  "invoice_date": "2026-03-08",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Hex Bolt M12, box of 100",
+      "quantity": 150,
+      "uom": "EACH",
+      "unit_price": 18.0,
+      "amount": 2700.0
+    },
+    {
+      "line": 2,
+      "description": "Expedited freight surcharge",
+      "quantity": 1,
+      "uom": "EACH",
+      "unit_price": 380.0,
+      "amount": 380.0
+    }
+  ],
+  "net_amount": 3080.0,
+  "tax_amount": 231.0,
+  "gross_amount": 3311.0
+}

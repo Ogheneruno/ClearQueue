@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-5714",
+  "vendor_name_as_billed": "Kestrel Industrial Supply",
+  "po_number": "PO-4423",
+  "invoice_date": "2026-03-18",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Control Panel Enclosure IP66",
+      "quantity": 15,
+      "uom": "EACH",
+      "unit_price": 242.0,
+      "amount": 3630.0
+    }
+  ],
+  "net_amount": 3630.0,
+  "tax_amount": 272.25,
+  "gross_amount": 3902.25
+}

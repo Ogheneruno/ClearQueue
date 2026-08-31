@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4404",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Dele Fashanu",
+  "po_date": "2026-02-05",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Safety Harness Model H7",
+      "quantity": 80,
+      "uom": "EACH",
+      "unit_price": 145.0,
+      "amount": 11600.0
+    }
+  ]
+}

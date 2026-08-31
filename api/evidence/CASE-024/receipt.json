@@ -1,0 +1,13 @@
+{
+  "receipt_number": "GR-7724",
+  "po_number": "PO-4424",
+  "received_date": "2026-03-16",
+  "note": "8 kits damaged in transit and refused at the dock.",
+  "lines": [
+    {
+      "line": 1,
+      "quantity": 52,
+      "uom": "EACH"
+    }
+  ]
+}

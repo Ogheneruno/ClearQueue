@@ -1,0 +1,45 @@
+{
+  "invoice_number": "INV-5710",
+  "vendor_name_as_billed": "Kestrel Industrial Supply",
+  "po_number": "PO-4415",
+  "invoice_date": "2026-03-12",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Junction Box 100mm",
+      "quantity": 150,
+      "uom": "EACH",
+      "unit_price": 6.4,
+      "amount": 960.0
+    },
+    {
+      "line": 2,
+      "description": "Steel Conduit 20mm, 3m length",
+      "quantity": 40,
+      "uom": "CASE",
+      "unit_price": 24.6,
+      "amount": 984.0
+    },
+    {
+      "line": 3,
+      "description": "Mounting Bracket, galvanised",
+      "quantity": 40,
+      "uom": "EACH",
+      "unit_price": 45.8,
+      "amount": 1832.0
+    },
+    {
+      "line": 4,
+      "description": "Gland Plate, 6-way",
+      "quantity": 25,
+      "uom": "EACH",
+      "unit_price": 120.0,
+      "amount": 3000.0
+    }
+  ],
+  "net_amount": 6776.0,
+  "tax_amount": 609.84,
+  "gross_amount": 7385.84
+}

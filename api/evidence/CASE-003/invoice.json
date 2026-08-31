@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-88144",
+  "vendor_name_as_billed": "Meridian Paper Co",
+  "po_number": "PO-4403",
+  "invoice_date": "2026-03-03",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Toner Cartridge TN-450",
+      "quantity": 100,
+      "uom": "EACH",
+      "unit_price": 63.1,
+      "amount": 6310.0
+    }
+  ],
+  "net_amount": 6310.0,
+  "tax_amount": 473.25,
+  "gross_amount": 6783.25
+}

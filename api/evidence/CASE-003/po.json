@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4403",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Dele Fashanu",
+  "po_date": "2026-02-11",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Toner Cartridge TN-450",
+      "quantity": 100,
+      "uom": "EACH",
+      "unit_price": 62.0,
+      "amount": 6200.0
+    }
+  ]
+}

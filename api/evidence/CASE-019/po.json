@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4419",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Dele Fashanu",
+  "po_date": "2026-02-27",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Carton Sealing Tape 48mm",
+      "quantity": 400,
+      "uom": "EACH",
+      "unit_price": 3.25,
+      "amount": 1300.0
+    }
+  ]
+}

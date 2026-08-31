@@ -1,0 +1,24 @@
+{
+  "vendor_id": "V-1004",
+  "name": "Halcyon Facilities Management Ltd",
+  "tax_rate": 0.075,
+  "tax_jurisdiction": "State sales tax, 7.5%",
+  "currency": "USD",
+  "payment_terms": "NET 30",
+  "pack_sizes": {},
+  "authorised_buyers": [
+    "Dele Fashanu"
+  ],
+  "prior_invoices": [
+    {
+      "invoice_number": "INV-3221",
+      "vendor_name_as_billed": "Halcyon Facilities Management Ltd",
+      "po_number": "PO-4408",
+      "gross_amount": 5160.0,
+      "invoice_date": "2026-02-01",
+      "service_period": "2026-02-01/2026-02-28",
+      "status": "PAID"
+    }
+  ],
+  "open_credit_memos": []
+}

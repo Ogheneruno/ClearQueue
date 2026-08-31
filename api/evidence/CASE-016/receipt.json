@@ -1,0 +1,12 @@
+{
+  "receipt_number": "GR-7716",
+  "po_number": "PO-4416",
+  "received_date": "2026-03-10",
+  "lines": [
+    {
+      "line": 1,
+      "quantity": 2,
+      "uom": "EACH"
+    }
+  ]
+}

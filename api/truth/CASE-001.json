@@ -1,0 +1,1 @@
+{"case_id": "CASE-001", "title": "Clean three-way match", "disposition": "APPROVE_FOR_PAYMENT", "payable_amount": 903.0, "currency": "USD", "required_approver_role": "AP_CLERK", "must_cite": [], "defects": [], "rationale_key_facts": ["PO, receipt and invoice agree on 200 EACH at $4.20.", "Tax of $63.00 equals 7.5% of $840.00."]}

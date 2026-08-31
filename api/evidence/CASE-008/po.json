@@ -1,0 +1,18 @@
+{
+  "po_number": "PO-4408",
+  "type": "SERVICES",
+  "currency": "USD",
+  "buyer": "Dele Fashanu",
+  "po_date": "2026-01-02",
+  "note": "Blanket PO, monthly cleaning retainer, Jan-Dec 2026.",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Monthly cleaning retainer",
+      "quantity": 1,
+      "uom": "MONTH",
+      "unit_price": 4800.0,
+      "amount": 4800.0
+    }
+  ]
+}

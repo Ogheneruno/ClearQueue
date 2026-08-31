@@ -1,0 +1,15 @@
+From: priya.raman@northgate-manufacturing.example
+To: sales@kestrel-industrial.example
+Date: Fri, 27 Feb 2026 10:12:00 +0000
+Subject: PO-4423 - enclosure pricing for the rest of Q1
+
+Tunde,
+
+Understood on the steel cost. Rather than go back and forth on each shipment: for PO-4423
+you are authorised up to $250.00 per enclosure for the remainder of Q1. Invoice at your
+actual cost within that ceiling and we will not query it.
+
+Anything above $250.00 comes back to me first.
+
+Priya Raman
+Procurement, Northgate Manufacturing

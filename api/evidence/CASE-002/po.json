@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4402",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Priya Raman",
+  "po_date": "2026-02-18",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Nitrile Gloves, 12 per case",
+      "quantity": 40,
+      "uom": "CASE",
+      "unit_price": 24.0,
+      "amount": 960.0
+    }
+  ]
+}

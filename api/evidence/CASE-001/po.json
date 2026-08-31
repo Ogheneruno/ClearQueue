@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4401",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Dele Fashanu",
+  "po_date": "2026-02-20",
+  "lines": [
+    {
+      "line": 1,
+      "description": "A4 Copy Paper, 500-sheet ream",
+      "quantity": 200,
+      "uom": "EACH",
+      "unit_price": 4.2,
+      "amount": 840.0
+    }
+  ]
+}

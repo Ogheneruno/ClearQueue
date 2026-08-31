@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4409",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Priya Raman",
+  "po_date": "2026-02-22",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Hex Bolt M12, box of 100",
+      "quantity": 150,
+      "uom": "EACH",
+      "unit_price": 18.0,
+      "amount": 2700.0
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "receipt_number": "GR-7715",
+  "po_number": "PO-4415",
+  "received_date": "2026-03-09",
+  "note": "Gland plates part-shipped; balance on back order.",
+  "lines": [
+    {
+      "line": 1,
+      "quantity": 150,
+      "uom": "EACH"
+    },
+    {
+      "line": 2,
+      "quantity": 480,
+      "uom": "EACH"
+    },
+    {
+      "line": 3,
+      "quantity": 40,
+      "uom": "EACH"
+    },
+    {
+      "line": 4,
+      "quantity": 20,
+      "uom": "EACH"
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4423",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Priya Raman",
+  "po_date": "2026-02-13",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Control Panel Enclosure IP66",
+      "quantity": 15,
+      "uom": "EACH",
+      "unit_price": 220.0,
+      "amount": 3300.0
+    }
+  ]
+}

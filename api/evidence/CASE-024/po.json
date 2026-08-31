@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4424",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Dele Fashanu",
+  "po_date": "2026-02-02",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Digital Press Consumable Kit",
+      "quantity": 60,
+      "uom": "EACH",
+      "unit_price": 320.0,
+      "amount": 19200.0
+    }
+  ]
+}

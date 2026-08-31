@@ -1,0 +1,25 @@
+{
+  "vendor_id": "V-1002",
+  "name": "Kestrel Industrial Supply",
+  "tax_rate": 0.075,
+  "tax_jurisdiction": "State sales tax, 7.5%",
+  "currency": "USD",
+  "payment_terms": "2/10 NET 30",
+  "pack_sizes": {
+    "CASE": 25
+  },
+  "authorised_buyers": [
+    "Dele Fashanu",
+    "Priya Raman"
+  ],
+  "prior_invoices": [],
+  "open_credit_memos": [
+    {
+      "credit_memo_number": "CM-2026-014",
+      "issued_date": "2026-02-20",
+      "amount": 1500.0,
+      "reason": "Short-ship on PO-4390, agreed settlement.",
+      "status": "OPEN"
+    }
+  ]
+}

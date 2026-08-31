@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4420",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Dele Fashanu",
+  "po_date": "2026-03-02",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Cable Gland M25",
+      "quantity": 200,
+      "uom": "EACH",
+      "unit_price": 8.1,
+      "amount": 1620.0
+    }
+  ]
+}

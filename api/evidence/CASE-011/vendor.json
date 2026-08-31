@@ -1,0 +1,14 @@
+{
+  "vendor_id": "V-1005",
+  "name": "Rheinwerk Komponenten GmbH",
+  "tax_rate": 0.075,
+  "tax_jurisdiction": "State sales tax, 7.5%",
+  "currency": "EUR",
+  "payment_terms": "NET 45",
+  "pack_sizes": {},
+  "authorised_buyers": [
+    "Priya Raman"
+  ],
+  "prior_invoices": [],
+  "open_credit_memos": []
+}

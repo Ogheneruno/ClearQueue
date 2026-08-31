@@ -1,0 +1,17 @@
+From: billing@kestrel-industrial.example
+To: ap@northgate-manufacturing.example
+Date: Mon, 2 Mar 2026 09:14:00 +0000
+Subject: Price adjustment notice - effective immediately
+
+Hello,
+
+Please note that due to sustained increases in raw steel and webbing costs, Kestrel
+Industrial Supply has adjusted list pricing on all fall-protection product lines by 6.2%
+with immediate effect. This adjustment is reflected on invoice INV-5612 against PO-4404.
+
+We have applied the new pricing to open purchase orders as our standard terms permit
+price adjustment on undelivered balances.
+
+Regards,
+Marta Oyelaran
+Billing, Kestrel Industrial Supply

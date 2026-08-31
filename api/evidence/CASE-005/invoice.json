@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-5620",
+  "vendor_name_as_billed": "Kestrel Industrial Supply",
+  "po_number": "PO-4405",
+  "invoice_date": "2026-03-04",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Steel Conduit 20mm, 3m length",
+      "quantity": 60,
+      "uom": "EACH",
+      "unit_price": 93.28,
+      "amount": 5596.8
+    }
+  ],
+  "net_amount": 5596.8,
+  "tax_amount": 419.76,
+  "gross_amount": 6016.56
+}

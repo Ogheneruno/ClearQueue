@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4418",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Dele Fashanu",
+  "po_date": "2026-02-23",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Cable Drum 500m, SWA 4c",
+      "quantity": 6,
+      "uom": "EACH",
+      "unit_price": 410.0,
+      "amount": 2460.0
+    }
+  ]
+}

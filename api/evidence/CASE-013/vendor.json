@@ -1,0 +1,14 @@
+{
+  "vendor_id": "V-1006",
+  "name": "Ashgrove Legal Partners",
+  "tax_rate": 0.075,
+  "tax_jurisdiction": "State sales tax, 7.5%",
+  "currency": "USD",
+  "payment_terms": "NET 30",
+  "pack_sizes": {},
+  "authorised_buyers": [
+    "Dele Fashanu"
+  ],
+  "prior_invoices": [],
+  "open_credit_memos": []
+}

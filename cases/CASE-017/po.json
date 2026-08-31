@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4417",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Priya Raman",
+  "po_date": "2026-02-06",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Armoured Cable 4c 16mm",
+      "quantity": 500,
+      "uom": "EACH",
+      "unit_price": 18.0,
+      "amount": 9000.0
+    }
+  ]
+}

@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4414",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Priya Raman",
+  "po_date": "2026-01-30",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Industrial Wipe, 25 per case",
+      "quantity": 1200,
+      "uom": "CASE",
+      "unit_price": 30.0,
+      "amount": 36000.0
+    }
+  ]
+}

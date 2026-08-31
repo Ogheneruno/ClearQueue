@@ -1,0 +1,14 @@
+{
+  "case_id": "CASE-003",
+  "title": "Price variance inside tolerance",
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 6783.25,
+  "currency": "USD",
+  "required_approver_role": "AP_CLERK",
+  "must_cite": [],
+  "defects": [],
+  "rationale_key_facts": [
+    "Variance of $1.10 per unit is 1.77%, inside the 2% band.",
+    "Tolerance is min(2% of $62.00 = $1.24, $50.00) = $1.24; $1.10 is within it."
+  ]
+}

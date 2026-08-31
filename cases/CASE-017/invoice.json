@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-5711",
+  "vendor_name_as_billed": "Kestrel Industrial Supply",
+  "po_number": "PO-4417",
+  "invoice_date": "2026-03-16",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Armoured Cable 4c 16mm",
+      "quantity": 500,
+      "uom": "EACH",
+      "unit_price": 19.6,
+      "amount": 9800.0
+    }
+  ],
+  "net_amount": 9800.0,
+  "tax_amount": 735.0,
+  "gross_amount": 10535.0
+}

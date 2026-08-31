@@ -1,0 +1,29 @@
+{
+  "invoice_number": "INV-5712",
+  "vendor_name_as_billed": "Kestrel Industrial Supply",
+  "po_number": "PO-4418",
+  "invoice_date": "2026-03-19",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Cable Drum 500m, SWA 4c",
+      "quantity": 6,
+      "uom": "EACH",
+      "unit_price": 410.0,
+      "amount": 2460.0
+    },
+    {
+      "line": 2,
+      "description": "Delivery and handling, oversize drums",
+      "quantity": 1,
+      "uom": "EACH",
+      "unit_price": 640.0,
+      "amount": 640.0
+    }
+  ],
+  "net_amount": 3100.0,
+  "tax_amount": 232.5,
+  "gross_amount": 3332.5
+}

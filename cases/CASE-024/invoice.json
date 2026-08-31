@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-88223",
+  "vendor_name_as_billed": "Meridian Paper Co",
+  "po_number": "PO-4424",
+  "invoice_date": "2026-03-19",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Digital Press Consumable Kit",
+      "quantity": 60,
+      "uom": "EACH",
+      "unit_price": 320.0,
+      "amount": 19200.0
+    }
+  ],
+  "net_amount": 19200.0,
+  "tax_amount": 1440.0,
+  "gross_amount": 20640.0
+}

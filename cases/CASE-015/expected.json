@@ -1,0 +1,26 @@
+{
+  "case_id": "CASE-015",
+  "title": "Four lines, four different treatments, then aggregation",
+  "disposition": "ESCALATE_HUMAN",
+  "payable_amount": 6639.2,
+  "currency": "USD",
+  "required_approver_role": "AP_CLERK",
+  "must_cite": [
+    "receipt.json",
+    "vendor.json"
+  ],
+  "defects": [
+    "quantity_shortfall",
+    "tax_discrepancy"
+  ],
+  "rationale_key_facts": [
+    "Line 1 matches exactly: $960.00.",
+    "Line 2 is billed in CASE; at pack size 12 that is 480 EACH at $2.05, identical to the PO. Normalisation, not a defect: $984.00.",
+    "Line 3 is $45.80 against a PO price of $45.00. Tolerance is the lower of 2% ($0.90) and $50.00, so $0.90; the $0.80 increase is inside it. Pay the invoiced price: $1,832.00.",
+    "Line 4 billed 25 but only 20 were received, so pay 20 x $120.00 = $2,400.00.",
+    "Corrected net is $6,176.00.",
+    "Supplier billed tax at 9%; at the vendor's 7.5% the correct tax is $463.20.",
+    "Corrected gross is $6,639.20.",
+    "Two defects trigger clause 11 escalation even though the amount is small."
+  ]
+}

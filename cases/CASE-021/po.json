@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4421",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Priya Raman",
+  "po_date": "2026-03-03",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Copier Toner Cartridge, black",
+      "quantity": 12,
+      "uom": "EACH",
+      "unit_price": 118.0,
+      "amount": 1416.0
+    }
+  ]
+}

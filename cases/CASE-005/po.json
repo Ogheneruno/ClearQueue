@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4405",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Dele Fashanu",
+  "po_date": "2026-02-09",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Steel Conduit 20mm, 3m length",
+      "quantity": 60,
+      "uom": "EACH",
+      "unit_price": 88.0,
+      "amount": 5280.0
+    }
+  ]
+}

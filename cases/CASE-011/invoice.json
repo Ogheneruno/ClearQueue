@@ -1,0 +1,21 @@
+{
+  "invoice_number": "RW-2026-0451",
+  "vendor_name_as_billed": "Rheinwerk Komponenten GmbH",
+  "po_number": "PO-4411",
+  "invoice_date": "2026-03-12",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Servo Drive SD-22",
+      "quantity": 40,
+      "uom": "EACH",
+      "unit_price": 231.0,
+      "amount": 9240.0
+    }
+  ],
+  "net_amount": 9240.0,
+  "tax_amount": 693.0,
+  "gross_amount": 9933.0
+}

@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-3310",
+  "vendor_name_as_billed": "Halcyon Facilities Management Ltd",
+  "po_number": "PO-4408",
+  "invoice_date": "2026-03-01",
+  "currency": "USD",
+  "service_period": "2026-03-01/2026-03-31",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Monthly cleaning retainer - March 2026",
+      "quantity": 1,
+      "uom": "MONTH",
+      "unit_price": 4800.0,
+      "amount": 4800.0
+    }
+  ],
+  "net_amount": 4800.0,
+  "tax_amount": 360.0,
+  "gross_amount": 5160.0
+}

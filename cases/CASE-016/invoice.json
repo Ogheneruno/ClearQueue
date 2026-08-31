@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-88220",
+  "vendor_name_as_billed": "Meridian Paper Co",
+  "po_number": "PO-4416",
+  "invoice_date": "2026-03-11",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Offset Print Cylinder, 720mm",
+      "quantity": 2,
+      "uom": "EACH",
+      "unit_price": 4075.0,
+      "amount": 8150.0
+    }
+  ],
+  "net_amount": 8150.0,
+  "tax_amount": 611.25,
+  "gross_amount": 8761.25
+}

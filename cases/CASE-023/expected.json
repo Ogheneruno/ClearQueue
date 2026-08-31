@@ -1,0 +1,18 @@
+{
+  "case_id": "CASE-023",
+  "title": "Variance cured by a standing ceiling rather than a specific figure",
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 3902.25,
+  "currency": "USD",
+  "required_approver_role": "AP_CLERK",
+  "must_cite": [
+    "correspondence/ceiling_authorisation.txt"
+  ],
+  "defects": [],
+  "rationale_key_facts": [
+    "The increase is $22.00 on a PO price of $220.00; tolerance is the lower of 2% ($4.40) and $50.00, so the variance is outside tolerance.",
+    "Priya Raman is an authorised buyer, the note names PO-4423, and it sets a $250.00 ceiling that covers the invoiced $242.00.",
+    "All three conditions of clause 3.1 are satisfied, so the variance is cured and is not a defect.",
+    "A cured variance is paid at the invoiced price: $3,902.25."
+  ]
+}

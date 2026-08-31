@@ -1,0 +1,24 @@
+{
+  "vendor_id": "V-1003",
+  "name": "Nordwind Supply Company LLC",
+  "tax_rate": 0.075,
+  "tax_jurisdiction": "State sales tax, 7.5%",
+  "currency": "USD",
+  "payment_terms": "NET 30",
+  "pack_sizes": {},
+  "authorised_buyers": [
+    "Priya Raman"
+  ],
+  "prior_invoices": [
+    {
+      "invoice_number": "NW-9912",
+      "vendor_name_as_billed": "Nordwind Supply Co.",
+      "po_number": "PO-4407",
+      "gross_amount": 3225.0,
+      "invoice_date": "2026-02-27",
+      "service_period": null,
+      "status": "PAID"
+    }
+  ],
+  "open_credit_memos": []
+}

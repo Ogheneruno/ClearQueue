@@ -1,0 +1,17 @@
+{
+  "case_id": "CASE-011",
+  "title": "PO in EUR, invoice in USD",
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 9933.0,
+  "currency": "USD",
+  "required_approver_role": "AP_CLERK",
+  "must_cite": [
+    "contract.md"
+  ],
+  "defects": [],
+  "rationale_key_facts": [
+    "Clause 4.2 fixes EUR 1.00 = USD 1.10 for invoices dated in Q1 2026.",
+    "EUR 210.00 at the fixed rate is exactly USD 231.00, so there is no price variance.",
+    "Payable is expressed in the invoice currency, USD, under clause 7."
+  ]
+}

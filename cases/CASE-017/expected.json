@@ -1,0 +1,20 @@
+{
+  "case_id": "CASE-017",
+  "title": "Price increase approved by someone with no authority, plus a wrong-PO decoy",
+  "disposition": "HOLD_PRICE_VARIANCE",
+  "payable_amount": 0.0,
+  "currency": "USD",
+  "required_approver_role": "AP_CLERK",
+  "must_cite": [
+    "correspondence/price_increase_approval.txt"
+  ],
+  "defects": [
+    "price_variance_uncured"
+  ],
+  "rationale_key_facts": [
+    "The increase is $1.60 on a PO price of $18.00; tolerance is the lower of 2% ($0.36) and $50.00, so $0.36. The variance is outside tolerance.",
+    "Femi Okonkwo approved it, but vendor.json lists only Dele Fashanu and Priya Raman as authorised buyers, so clause 3.1 condition 1 fails.",
+    "The other approval on file is from Dele Fashanu but references PO-4405, not PO-4417, so it fails clause 3.1 condition 2.",
+    "The variance is uncured."
+  ]
+}

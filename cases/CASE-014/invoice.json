@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-5702",
+  "vendor_name_as_billed": "Kestrel Industrial Supply",
+  "po_number": "PO-4414",
+  "invoice_date": "2026-03-17",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Industrial Wipe",
+      "quantity": 30000,
+      "uom": "EACH",
+      "unit_price": 1.2,
+      "amount": 36000.0
+    }
+  ],
+  "net_amount": 36000.0,
+  "tax_amount": 3240.0,
+  "gross_amount": 39240.0
+}

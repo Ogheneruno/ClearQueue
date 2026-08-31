@@ -1,0 +1,17 @@
+{
+  "case_id": "CASE-005",
+  "title": "Price variance outside tolerance, cured by buyer authorisation",
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 6016.56,
+  "currency": "USD",
+  "required_approver_role": "AP_CLERK",
+  "must_cite": [
+    "correspondence/surcharge_approval.txt"
+  ],
+  "defects": [],
+  "rationale_key_facts": [
+    "Variance of $5.28 per unit is 6.0%, outside the $1.76 tolerance.",
+    "Dele Fashanu is an authorised buyer and approved up to 6% on PO-4405 by name.",
+    "Clause 3.1 is satisfied, so the variance is cured and paid as invoiced."
+  ]
+}

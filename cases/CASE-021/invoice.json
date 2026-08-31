@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-88222",
+  "vendor_name_as_billed": "Meridian Paper Co",
+  "po_number": "PO-4421",
+  "invoice_date": "2026-03-22",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Copier Toner Cartridge, black",
+      "quantity": 12,
+      "uom": "EACH",
+      "unit_price": 118.0,
+      "amount": 1416.0
+    }
+  ],
+  "net_amount": 1416.0,
+  "tax_amount": 106.2,
+  "gross_amount": 1522.2
+}

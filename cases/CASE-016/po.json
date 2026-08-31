@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4416",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Dele Fashanu",
+  "po_date": "2026-02-16",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Offset Print Cylinder, 720mm",
+      "quantity": 2,
+      "uom": "EACH",
+      "unit_price": 4000.0,
+      "amount": 8000.0
+    }
+  ]
+}

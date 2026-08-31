@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-5713",
+  "vendor_name_as_billed": "Kestrel Industrial Supply",
+  "po_number": "PO-4420",
+  "invoice_date": "2026-03-21",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Cable Gland M25",
+      "quantity": 206,
+      "uom": "EACH",
+      "unit_price": 8.1,
+      "amount": 1668.6
+    }
+  ],
+  "net_amount": 1668.6,
+  "tax_amount": 125.15,
+  "gross_amount": 1793.75
+}

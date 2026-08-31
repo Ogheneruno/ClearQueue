@@ -1,0 +1,21 @@
+{
+  "case_id": "CASE-022",
+  "title": "Same PO and amount as a paid invoice, with OVERLAPPING service periods",
+  "disposition": "DUPLICATE_REJECT",
+  "payable_amount": 0.0,
+  "currency": "USD",
+  "required_approver_role": "AP_CLERK",
+  "must_cite": [
+    "vendor.json"
+  ],
+  "defects": [
+    "suspected_duplicate"
+  ],
+  "rationale_key_facts": [
+    "Vendor matches HL-3301 after suffix normalisation (Ltd and Limited).",
+    "Same PO-4422, gross identical at $4,300.00, and the dates are 19 days apart, inside the 45-day window.",
+    "The service periods are 1-28 February and 15 February to 14 March. They overlap across 15-28 February.",
+    "Clause 8.1 rescues only distinct, NON-overlapping periods, so it does not apply and every condition of clause 8 is met.",
+    "SERVICES PO, so the absent goods receipt is normal and not a defect."
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "receipt_number": "GR-7720",
+  "po_number": "PO-4420",
+  "received_date": "2026-03-19",
+  "note": "Supplier shipped a full carton rather than the ordered count.",
+  "lines": [
+    {
+      "line": 1,
+      "quantity": 206,
+      "uom": "EACH"
+    }
+  ]
+}

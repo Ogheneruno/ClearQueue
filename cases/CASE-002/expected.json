@@ -1,0 +1,14 @@
+{
+  "case_id": "CASE-002",
+  "title": "Unit-of-measure mismatch (CASE vs EACH)",
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 1032.0,
+  "currency": "USD",
+  "required_approver_role": "AP_CLERK",
+  "must_cite": [],
+  "defects": [],
+  "rationale_key_facts": [
+    "480 EACH divided by pack size 12 equals the 40 CASE ordered and received.",
+    "$2.00 per EACH times 12 equals the $24.00 per CASE on the PO."
+  ]
+}

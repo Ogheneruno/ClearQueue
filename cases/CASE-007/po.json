@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4407",
+  "type": "GOODS",
+  "currency": "USD",
+  "buyer": "Priya Raman",
+  "po_date": "2026-02-10",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Pallet Rack Beam, 2700mm",
+      "quantity": 25,
+      "uom": "EACH",
+      "unit_price": 120.0,
+      "amount": 3000.0
+    }
+  ]
+}

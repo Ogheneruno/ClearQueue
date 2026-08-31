@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-5612",
+  "vendor_name_as_billed": "Kestrel Industrial Supply",
+  "po_number": "PO-4404",
+  "invoice_date": "2026-03-02",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Safety Harness Model H7",
+      "quantity": 80,
+      "uom": "EACH",
+      "unit_price": 154.0,
+      "amount": 12320.0
+    }
+  ],
+  "net_amount": 12320.0,
+  "tax_amount": 924.0,
+  "gross_amount": 13244.0
+}

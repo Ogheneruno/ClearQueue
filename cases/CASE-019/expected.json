@@ -1,0 +1,21 @@
+{
+  "case_id": "CASE-019",
+  "title": "Supplier under-charged tax; the correct payable is higher than billed",
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 1397.5,
+  "currency": "USD",
+  "required_approver_role": "AP_CLERK",
+  "must_cite": [
+    "vendor.json"
+  ],
+  "defects": [
+    "tax_discrepancy"
+  ],
+  "rationale_key_facts": [
+    "Quantity and price match the PO and the receipt exactly.",
+    "The supplier billed $65.00 of tax, which is 5% of the net.",
+    "The vendor's rate is 7.5%, so the correct tax on $1,300.00 is $97.50.",
+    "Clause 5 says an under-charge is paid at the recomputed higher total: $1,397.50, which is more than the supplier asked for.",
+    "It is still a defect and must be flagged as a tax-compliance exposure."
+  ]
+}

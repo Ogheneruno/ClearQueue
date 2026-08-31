@@ -1,0 +1,21 @@
+{
+  "case_id": "CASE-016",
+  "title": "Price variance inside 2% but outside the $50.00 per-line cap",
+  "disposition": "HOLD_PRICE_VARIANCE",
+  "payable_amount": 0.0,
+  "currency": "USD",
+  "required_approver_role": "AP_CLERK",
+  "must_cite": [
+    "po.json"
+  ],
+  "defects": [
+    "price_variance_uncured"
+  ],
+  "rationale_key_facts": [
+    "The increase is $75.00 per unit on a PO price of $4,000.00.",
+    "As a percentage that is 1.875%, which is inside the 2% band.",
+    "But 2% of $4,000.00 is $80.00, and the tolerance is the LOWER of that and $50.00, so the tolerance is $50.00.",
+    "$75.00 exceeds $50.00, so the variance is outside tolerance.",
+    "No authorisation is present, so clause 3.1 does not cure it."
+  ]
+}

@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-5590",
+  "vendor_name_as_billed": "Kestrel Industrial Supply",
+  "po_number": "PO-4402",
+  "invoice_date": "2026-03-05",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Nitrile Gloves",
+      "quantity": 480,
+      "uom": "EACH",
+      "unit_price": 2.0,
+      "amount": 960.0
+    }
+  ],
+  "net_amount": 960.0,
+  "tax_amount": 72.0,
+  "gross_amount": 1032.0
+}

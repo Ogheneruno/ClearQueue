@@ -1,0 +1,13 @@
+{
+  "receipt_number": "GR-7709",
+  "po_number": "PO-4409",
+  "received_date": "2026-03-06",
+  "note": "Expedited overnight freight requested by production.",
+  "lines": [
+    {
+      "line": 1,
+      "quantity": 150,
+      "uom": "EACH"
+    }
+  ]
+}

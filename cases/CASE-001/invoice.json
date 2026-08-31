@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-88120",
+  "vendor_name_as_billed": "Meridian Paper Co",
+  "po_number": "PO-4401",
+  "invoice_date": "2026-03-06",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "A4 Copy Paper, 500-sheet ream",
+      "quantity": 200,
+      "uom": "EACH",
+      "unit_price": 4.2,
+      "amount": 840.0
+    }
+  ],
+  "net_amount": 840.0,
+  "tax_amount": 63.0,
+  "gross_amount": 903.0
+}

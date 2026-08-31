@@ -1,0 +1,26 @@
+From: sales@kestrel-industrial.example
+To: femi.okonkwo@northgate-manufacturing.example
+Date: Mon, 09 Mar 2026 08:31:00 +0000
+Subject: PO-4417 - copper surcharge
+
+Femi,
+
+Copper has moved again and we need to apply $1.60/m to the armoured cable on PO-4417,
+taking it to $19.60. We can ship Thursday if you are happy with that.
+
+Tunde Alabi
+Kestrel Industrial Supply
+
+--- reply ---
+
+From: femi.okonkwo@northgate-manufacturing.example
+To: sales@kestrel-industrial.example
+Date: Mon, 09 Mar 2026 09:05:00 +0000
+Subject: RE: PO-4417 - copper surcharge
+
+Tunde,
+
+That's fine, go ahead and ship Thursday at $19.60. We need the cable on site.
+
+Femi Okonkwo
+Warehouse Supervisor, Northgate Manufacturing

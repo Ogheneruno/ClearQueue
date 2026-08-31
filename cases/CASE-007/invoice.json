@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-77201",
+  "vendor_name_as_billed": "Nordwind Supply Company LLC",
+  "po_number": "PO-4407",
+  "invoice_date": "2026-03-18",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Pallet Rack Beam, 2700mm",
+      "quantity": 25,
+      "uom": "EACH",
+      "unit_price": 120.0,
+      "amount": 3000.0
+    }
+  ],
+  "net_amount": 3000.0,
+  "tax_amount": 225.0,
+  "gross_amount": 3225.0
+}

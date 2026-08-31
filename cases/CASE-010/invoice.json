@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-88192",
+  "vendor_name_as_billed": "Meridian Paper Co",
+  "po_number": "PO-4410",
+  "invoice_date": "2026-03-11",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Laminating Pouch, pack of 100",
+      "quantity": 200,
+      "uom": "EACH",
+      "unit_price": 31.0,
+      "amount": 6200.0
+    }
+  ],
+  "net_amount": 6200.0,
+  "tax_amount": 744.0,
+  "gross_amount": 6944.0
+}

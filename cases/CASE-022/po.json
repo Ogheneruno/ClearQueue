@@ -1,0 +1,17 @@
+{
+  "po_number": "PO-4422",
+  "type": "SERVICES",
+  "currency": "USD",
+  "buyer": "Dele Fashanu",
+  "po_date": "2026-01-20",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Grounds maintenance, monthly",
+      "quantity": 1,
+      "uom": "MONTH",
+      "unit_price": 4000.0,
+      "amount": 4000.0
+    }
+  ]
+}

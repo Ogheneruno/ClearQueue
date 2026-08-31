@@ -1,0 +1,18 @@
+{
+  "case_id": "CASE-020",
+  "title": "Over-delivery of 3% -- inside the tolerated band",
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 1793.75,
+  "currency": "USD",
+  "required_approver_role": "AP_CLERK",
+  "must_cite": [
+    "receipt.json"
+  ],
+  "defects": [],
+  "rationale_key_facts": [
+    "206 received against 200 ordered is 3% over, inside the 5% band.",
+    "Clause 4 says pay for the received quantity and treat it as clean.",
+    "Recomputed tax at 7.5% of $1,668.60 is $125.145, and the supplier billed $125.15 -- inside the $0.02 rounding allowance, so not a defect.",
+    "This invoice has no defects at all."
+  ]
+}

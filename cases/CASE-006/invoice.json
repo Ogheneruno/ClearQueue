@@ -1,0 +1,21 @@
+{
+  "invoice_number": "INV-88160",
+  "vendor_name_as_billed": "Meridian Paper Co",
+  "po_number": "PO-4406",
+  "invoice_date": "2026-03-07",
+  "currency": "USD",
+  "service_period": null,
+  "lines": [
+    {
+      "line": 1,
+      "description": "Archive Storage Box",
+      "quantity": 100,
+      "uom": "EACH",
+      "unit_price": 9.5,
+      "amount": 950.0
+    }
+  ],
+  "net_amount": 950.0,
+  "tax_amount": 71.25,
+  "gross_amount": 1021.25
+}

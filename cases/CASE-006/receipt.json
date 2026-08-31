@@ -1,0 +1,13 @@
+{
+  "receipt_number": "GR-7706",
+  "po_number": "PO-4406",
+  "received_date": "2026-03-05",
+  "note": "Balance of 40 on backorder, no ETA confirmed.",
+  "lines": [
+    {
+      "line": 1,
+      "quantity": 60,
+      "uom": "EACH"
+    }
+  ]
+}

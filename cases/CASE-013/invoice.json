@@ -1,0 +1,21 @@
+{
+  "invoice_number": "ALP-1188",
+  "vendor_name_as_billed": "Ashgrove Legal Partners",
+  "po_number": "PO-4413",
+  "invoice_date": "2026-03-14",
+  "currency": "USD",
+  "service_period": "2026-01-01/2026-03-31",
+  "lines": [
+    {
+      "line": 1,
+      "description": "Contract review retainer, Q1 2026",
+      "quantity": 1,
+      "uom": "EACH",
+      "unit_price": 7500.0,
+      "amount": 7500.0
+    }
+  ],
+  "net_amount": 7500.0,
+  "tax_amount": 562.5,
+  "gross_amount": 8062.5
+}

@@ -1,0 +1,251 @@
+[
+  {
+    "case_id": "CASE-001",
+    "title": "Clean three-way match",
+    "tests": "Control. Punishes an agent that invents problems.",
+    "disposition": "APPROVE_FOR_PAYMENT",
+    "payable_amount": 903.0,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-002",
+    "title": "Unit-of-measure mismatch (CASE vs EACH)",
+    "tests": "Normalisation is not a defect.",
+    "disposition": "APPROVE_FOR_PAYMENT",
+    "payable_amount": 1032.0,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-003",
+    "title": "Price variance inside tolerance",
+    "tests": "Tolerance arithmetic: min(2%, $50).",
+    "disposition": "APPROVE_FOR_PAYMENT",
+    "payable_amount": 6783.25,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-004",
+    "title": "Price variance outside tolerance, supplier-asserted only",
+    "tests": "A supplier notice is not an authorisation.",
+    "disposition": "HOLD_PRICE_VARIANCE",
+    "payable_amount": 0.0,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": [
+      "supplier_price_notice.txt"
+    ]
+  },
+  {
+    "case_id": "CASE-005",
+    "title": "Price variance outside tolerance, cured by buyer authorisation",
+    "tests": "Judgment over rules: the email changes the answer.",
+    "disposition": "APPROVE_FOR_PAYMENT",
+    "payable_amount": 6016.56,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": [
+      "surcharge_approval.txt"
+    ]
+  },
+  {
+    "case_id": "CASE-006",
+    "title": "Partial delivery billed in full",
+    "tests": "Short-pay arithmetic on the received quantity.",
+    "disposition": "SHORT_PAY",
+    "payable_amount": 612.75,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-007",
+    "title": "Duplicate invoice under a vendor-name variant",
+    "tests": "Entity resolution across name spellings.",
+    "disposition": "DUPLICATE_REJECT",
+    "payable_amount": 0.0,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-008",
+    "title": "Recurring retainer that looks like a duplicate",
+    "tests": "TRAP. Punishes naive amount-matching duplicate logic.",
+    "disposition": "APPROVE_FOR_PAYMENT",
+    "payable_amount": 5160.0,
+    "has_receipt": false,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-009",
+    "title": "Freight line absent from the PO",
+    "tests": "Contract clause retrieval and the $500 ceiling.",
+    "disposition": "APPROVE_FOR_PAYMENT",
+    "payable_amount": 3311.0,
+    "has_receipt": true,
+    "has_contract": true,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-010",
+    "title": "Supplier applied the wrong tax rate",
+    "tests": "Pure arithmetic trap. Independent tax recomputation.",
+    "disposition": "SHORT_PAY",
+    "payable_amount": 6665.0,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-011",
+    "title": "PO in EUR, invoice in USD",
+    "tests": "Contract-fixed FX is normalisation, not a defect.",
+    "disposition": "APPROVE_FOR_PAYMENT",
+    "payable_amount": 9933.0,
+    "has_receipt": true,
+    "has_contract": true,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-012",
+    "title": "Over-delivery beyond the 5% band",
+    "tests": "Over-receipt tolerance in the other direction.",
+    "disposition": "HOLD_QUANTITY_VARIANCE",
+    "payable_amount": 0.0,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-013",
+    "title": "Services invoice with no goods receipt",
+    "tests": "Two-way match. Absence of a receipt is not a defect here.",
+    "disposition": "APPROVE_FOR_PAYMENT",
+    "payable_amount": 8062.5,
+    "has_receipt": false,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-014",
+    "title": "Multi-defect: partial delivery, wrong tax rate, open credit memo, over threshold",
+    "tests": "THE HARD ONE. Four interacting corrections then escalation.",
+    "disposition": "ESCALATE_HUMAN",
+    "payable_amount": 32362.5,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-015",
+    "title": "Four lines, four different treatments, then aggregation",
+    "tests": "Breadth. Each line is individually easy; the invoice is only right if all four are handled and summed correctly.",
+    "disposition": "ESCALATE_HUMAN",
+    "payable_amount": 6639.2,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-016",
+    "title": "Price variance inside 2% but outside the $50.00 per-line cap",
+    "tests": "Clause 3 says the tolerance is the LOWER of 2% and $50.00. On a high-priced line the cap binds first. Reading only the percentage approves an unauthorised increase.",
+    "disposition": "HOLD_PRICE_VARIANCE",
+    "payable_amount": 0.0,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-017",
+    "title": "Price increase approved by someone with no authority, plus a wrong-PO decoy",
+    "tests": "Clause 3.1 needs all three conditions. Here an approval exists and reads convincingly, but the approver is not an authorised buyer -- and a genuine authorised buyer's approval is present for a different PO.",
+    "disposition": "HOLD_PRICE_VARIANCE",
+    "payable_amount": 0.0,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": [
+      "price_increase_approval.txt",
+      "unrelated_approval.txt"
+    ]
+  },
+  {
+    "case_id": "CASE-018",
+    "title": "Freight expressly permitted by contract but above the $500.00 limit",
+    "tests": "Clause 6 needs both conditions. The contract permits the charge, which is the half an agent is likely to find and stop at.",
+    "disposition": "HOLD_PRICE_VARIANCE",
+    "payable_amount": 0.0,
+    "has_receipt": true,
+    "has_contract": true,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-019",
+    "title": "Supplier under-charged tax; the correct payable is higher than billed",
+    "tests": "Clause 5's counterintuitive branch. Every other tax case reduces the payable, so an agent that has learned 'tax defect means pay less' gets both the amount and the direction wrong.",
+    "disposition": "APPROVE_FOR_PAYMENT",
+    "payable_amount": 1397.5,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-020",
+    "title": "Over-delivery of 3% -- inside the tolerated band",
+    "tests": "The other side of clause 4 from CASE-012. An agent that holds any over-delivery blocks a legitimate invoice.",
+    "disposition": "APPROVE_FOR_PAYMENT",
+    "payable_amount": 1793.75,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-021",
+    "title": "Open credit memo larger than the invoice -- payable floors at zero",
+    "tests": "Clause 9's floor. A payable of $0.00 that is nonetheless an APPROVE, not a hold -- the amount and the disposition pull in opposite directions.",
+    "disposition": "APPROVE_FOR_PAYMENT",
+    "payable_amount": 0.0,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-022",
+    "title": "Same PO and amount as a paid invoice, with OVERLAPPING service periods",
+    "tests": "The mirror of CASE-008. There a distinct service period made a near-duplicate legitimate; here the periods overlap, so clause 8.1 does not rescue it. An agent that learned 'service period present means recurring' pays twice.",
+    "disposition": "DUPLICATE_REJECT",
+    "payable_amount": 0.0,
+    "has_receipt": false,
+    "has_contract": false,
+    "correspondence_files": []
+  },
+  {
+    "case_id": "CASE-023",
+    "title": "Variance cured by a standing ceiling rather than a specific figure",
+    "tests": "Clause 3.1 condition 3 accepts 'a ceiling that covers it'. The authorisation never names $242.00, so a literal match fails and the agent must reason about coverage.",
+    "disposition": "APPROVE_FOR_PAYMENT",
+    "payable_amount": 3902.25,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": [
+      "ceiling_authorisation.txt"
+    ]
+  },
+  {
+    "case_id": "CASE-024",
+    "title": "Short delivery landing the payable in the AP_MANAGER band",
+    "tests": "No case among the first fourteen produced a payable between $10,000.01 and $25,000.00, so the middle approval tier was never exercised at all.",
+    "disposition": "SHORT_PAY",
+    "payable_amount": 17888.0,
+    "has_receipt": true,
+    "has_contract": false,
+    "correspondence_files": []
+  }
+]

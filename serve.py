@@ -189,6 +189,46 @@ def new_job(case_id: str, mode: str, version_name: str) -> str:
     return job_id
 
 
+def compare_to_committed(case_id: str, version_name: str, verdict: dict) -> dict | None:
+    """Did this run reproduce the committed trajectory for the same case?
+
+    Deliberately *not* a comparison against ground truth. Ground truth is behind the
+    "Reveal" button and stays there; a run that silently graded itself would take that
+    choice away from whoever is looking. This answers a narrower and more useful question
+    for someone who has just pressed a button on a screen already full of replayed data:
+    is what I am now looking at the same answer that is committed to the repository, or a
+    different one? Either result is informative. Disagreement is not a failure -- the model
+    is not deterministic, and the citation column moved across five runs under identical
+    levers, which is a documented finding rather than a bug.
+    """
+    committed_path = RECORDED / version_name / case_id / "verdict.json"
+    if not committed_path.is_file():
+        return None
+    try:
+        committed = json.loads(committed_path.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        return None
+
+    def amount(v: dict) -> float | None:
+        try:
+            return round(float(v.get("payable_amount")), 2)
+        except (TypeError, ValueError):
+            return None
+
+    disp_same = verdict.get("disposition") == committed.get("disposition")
+    amt_same = amount(verdict) is not None and amount(verdict) == amount(committed)
+    return {
+        "committed_disposition": committed.get("disposition"),
+        "committed_amount": amount(committed),
+        "live_disposition": verdict.get("disposition"),
+        "live_amount": amount(verdict),
+        "disposition_same": disp_same,
+        "amount_same": amt_same,
+        "identical": bool(disp_same and amt_same),
+        "committed_path": (committed_path.relative_to(ROOT)).as_posix(),
+    }
+
+
 def run_job(job_id: str) -> None:
     """Execute one case. Identical call path to run.py -- no demo-only shortcut exists."""
     job = _jobs[job_id]
@@ -221,6 +261,11 @@ def run_job(job_id: str) -> None:
         (SCRATCH / "packets" / f"{case_id}.md").write_text(text, encoding="utf-8")
 
         job["verdict"] = verdict
+        # The packet the CLI would have written, returned so the console can replace the
+        # committed one on screen. Showing a fresh verdict above a stale packet would be
+        # worse than showing nothing.
+        job["packet"] = text
+        job["agreement"] = compare_to_committed(case_id, version_name, verdict)
         job["status"] = "done"
     except Exception as exc:                       # surfaced in the UI, not swallowed
         job["error"] = f"{type(exc).__name__}: {exc}"

@@ -239,6 +239,23 @@ pre.file {
 .alert.warn { background: rgba(229,181,103,0.08); border-color: rgba(229,181,103,0.35); color: #f0d296; }
 .alert.info { background: rgba(124,196,255,0.07); border-color: rgba(124,196,255,0.3); color: #bfe0ff; }
 .alert.bad  { background: rgba(242,119,122,0.08); border-color: rgba(242,119,122,0.35); color: #f7b3b5; }
+.alert.good { background: rgba(126,214,175,0.08); border-color: rgba(126,214,175,0.35); color: #9fe8cd; }
+
+/* ---------- provenance strip ----------
+   Always on the case view, so "which trajectory am I looking at" is never a guess. The
+   left border is the tell: grey while replaying committed data, coloured the moment a run
+   you started replaces it. */
+
+.prov {
+  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+  border: 1px solid var(--line); border-left-width: 3px; border-radius: 6px;
+  padding: 8px 12px; margin-bottom: 12px; font-size: 12.5px;
+}
+.prov code { font-size: 11px; }
+.prov.committed { border-left-color: var(--dim); }
+.prov.live      { border-left-color: var(--good); background: rgba(126,214,175,0.05); }
+.prov.mockrun   { border-left-color: var(--warn); background: rgba(229,181,103,0.05); }
+button.btn.tiny { padding: 2px 8px; font-size: 11px; margin-left: auto; }
 
 /* ---------- markdown (review packet) ---------- */
 

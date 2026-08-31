@@ -274,18 +274,60 @@ async function openCase(caseId) {
   renderCase(state.detail);
 }
 
-function renderCase(d) {
-  const v = d.verdict || {};
-  const cited = new Set((v.citations || []).map((c) => c.replace(/\\/g, '/')));
-  const read = new Set(d.stats.files_read || []);
+/* Which trajectory is on this screen right now?
 
-  /* file list */
-  $('#fileList').innerHTML = d.evidence.map((f) => {
+   Every pane on this view is full the moment you open a case, because replay is the default.
+   That is the right default and it creates one problem: after pressing "Run it now" the
+   screen looks much as it did before, so there is nothing to distinguish a fresh run from
+   the committed one it replaced. This strip is the answer -- it is always present, it names
+   the source, and it changes visibly when the data underneath it changes. */
+function renderProvenance(job) {
+  const el = $('#provenance');
+  if (!job) {
+    el.innerHTML = `<div class="prov committed">
+      <b>Showing the committed trajectory.</b>
+      <code>runs/recorded/${esc(state.run)}/${esc(state.caseId)}/trajectory.jsonl</code>
+      <span class="dim">recorded earlier, replayed from disk &mdash; no model was called to
+      show you this</span></div>`;
+    return;
+  }
+  const meta = (job.verdict || {})._meta || {};
+  const live = job.mode === 'live';
+  const bits = [
+    `${(job.events || []).length} events`,
+    `${(job.stats || {}).tool_calls ?? 0} tool calls`,
+  ];
+  if (live) {
+    bits.push(`$${(meta.cost_usd ?? 0).toFixed(4)}`, `${meta.latency_s ?? 0}s`);
+  }
+  el.innerHTML = `<div class="prov ${live ? 'live' : 'mockrun'}">
+    <b>${live ? 'Showing a live run you just started.' : 'Showing a mock run you just started.'}</b>
+    <code>${esc(job.trajectory || '')}</code>
+    <span class="dim">${esc(bits.join(' · '))}</span>
+    <button class="btn tiny" id="backToCommitted">Back to the committed trace</button></div>`;
+  $('#backToCommitted').onclick = () => openCase(state.caseId);
+}
+
+/* Split out of renderCase so a finished run can re-flag the evidence list against its own
+   citations. Leaving CITED on the file the committed run cited, next to a verdict from a
+   different run that cited something else, is the kind of quiet mismatch this project keeps
+   arguing against. */
+function renderFileList(caseId, evidence, verdict, stats) {
+  const cited = new Set((verdict.citations || []).map((c) => c.replace(/\\/g, '/')));
+  const read = new Set(stats.files_read || []);
+  $('#fileList').innerHTML = (evidence || []).map((f) => {
     const flag = cited.has(f) ? '<span class="flag cited">CITED</span>'
       : read.has(f) ? '<span class="flag read">opened</span>' : '';
     return `<li data-file="${esc(f)}"><span>${esc(f)}</span>${flag}</li>`;
   }).join('');
-  $$('#fileList li').forEach((li) => { li.onclick = () => openFile(d.case_id, li.dataset.file); });
+  $$('#fileList li').forEach((li) => { li.onclick = () => openFile(caseId, li.dataset.file); });
+}
+
+function renderCase(d) {
+  const v = d.verdict || {};
+
+  renderProvenance(null);
+  renderFileList(d.case_id, d.evidence, d.verdict || {}, d.stats || {});
 
   /* invoice header */
   const inv = d.invoice || {};
@@ -532,14 +574,49 @@ async function pollJob(jobId) {
   }
   $('#runStatus').innerHTML = '<span class="tick">&#10003; finished</span>';
 
-  /* Show the freshly produced verdict, and say plainly that it is live output rather than
-     the committed trace, so nobody mistakes one for the other on a recording. */
-  const live = { ...state.detail, verdict: job.verdict, events: job.events, stats: job.stats };
-  live.score = null;
-  renderVerdict({ ...live, score: state.detail.score });
-  $('#verdictPane').insertAdjacentHTML('afterbegin',
-    `<div class="alert info">Just produced live. The committed trace for this case is still in
-     <code>runs/recorded/${esc(state.run)}/</code>; reload the case to go back to it.</div>`);
+  /* Everything on this view now comes from the run that just finished -- verdict, packet,
+     evidence flags, timeline and the strip that says so. Refreshing only the verdict would
+     leave a fresh recommendation sitting above the committed run's packet and the committed
+     run's CITED flags, which reads as one coherent case and is not one. */
+  const v = job.verdict || {};
+  renderProvenance(job);
+  renderFileList(state.caseId, (state.detail || {}).evidence || [], v, job.stats || {});
+  renderVerdict({ ...state.detail, verdict: v, stats: job.stats, score: state.detail.score });
+  $('#packetPane').innerHTML = job.packet
+    ? markdown(job.packet)
+    : '<p class="dim">No packet was produced by this run.</p>';
+  renderTrace(job.events, job.stats);
+
+  $('#verdictPane').insertAdjacentHTML('afterbegin', agreementHTML(job));
+}
+
+/* The question someone actually has after pressing the button: did this reproduce what is
+   committed? Not "is it correct" -- ground truth stays behind the Reveal button, because a
+   run that graded itself would take that reveal away from whoever is watching. */
+function agreementHTML(job) {
+  const a = job.agreement;
+  const src = job.mode === 'live' ? 'This ran against the real model just now'
+                                  : 'This ran against the scripted mock just now';
+  if (!a) {
+    return `<div class="alert info">${src}. There is no committed trajectory for this case
+      to compare it against.</div>`;
+  }
+  if (a.identical) {
+    return `<div class="alert good"><b>Re-derived the committed answer exactly.</b> ${src},
+      and it reached ${pill(a.live_disposition)} at <b>${money(a.live_amount)}</b> &mdash; the
+      same disposition and the same amount to the cent as
+      <code>${esc(a.committed_path)}</code>. The committed trajectories were not hand-made.</div>`;
+  }
+  return `<div class="alert warn"><b>This run differs from the committed one.</b> ${src} and
+    reached ${pill(a.live_disposition)} at <b>${money(a.live_amount)}</b>; the committed run
+    in <code>${esc(a.committed_path)}</code> reached ${pill(a.committed_disposition)} at
+    <b>${money(a.committed_amount)}</b>.
+    ${job.mode === 'mock'
+      ? 'Expected: the mock is the always-approve control, so it approves at the billed amount.'
+      : 'Not a malfunction. The model is not deterministic and this project measured that ' +
+        'directly &mdash; citation validity read 100.0%, 90.5%, 76.2%, 95.2% and 71.4% across ' +
+        'five runs under identical levers. One case is worth 4.2 points on 24 cases. The ' +
+        'committed run is what the README numbers are scored on.'}</div>`;
 }
 
 /* ---------------------------------------------------------------- ladder */

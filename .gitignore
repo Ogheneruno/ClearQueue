@@ -17,7 +17,27 @@ runs/_*
 # A PyManager runtime shim that materialised in this directory. Not part of the project.
 /Python/
 
+# Editor and OS droppings. Harmless locally, but they travel inside a submission archive
+# and desktop.ini in particular carries machine-specific paths.
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# The screen recording and any archive built from this tree are submitted as their own
+# artifacts. Committing them would put a few hundred MB of video in git history.
+*.mp4
+*.mov
+*.mkv
+*.zip
+
+# Written by the web app's approval gate at demo time. The gate is the deliverable; a
+# particular afternoon's clicks are not. Schema is documented in README section 5.
+out/approvals.jsonl
+
 # Everything else is deliberately committed:
 #   cases/         the dataset and its ground truth
-#   runs/          agent trajectories -- a required deliverable
+#   runs/recorded/ agent trajectories -- a required deliverable
 #   out/packets/   the human review packets
+#   webapp/        the demo UI, served by serve.py

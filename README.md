@@ -217,6 +217,26 @@ degrade rather than the gap going unnoticed.
 Clause 13 of the policy says it plainly, and so does every packet footer: *ClearQueue
 recommends; a person decides.*
 
+**The same gate, with a screen.** `python serve.py` opens a local console at
+`http://127.0.0.1:8765` showing the queue as the person doing the job would see it: the
+invoice, the evidence files, the recommendation, the trajectory behind it, and a signature
+block. It is a view over the same code — the console's "run it now" button calls the same
+`solve_case()` that `run.py` calls, and there is no demo-only shortcut in it. Decisions
+signed in the console append to `out/approvals.jsonl` in the same shape the CLI writes:
+
+```json
+{"case_id": "CASE-005", "recommended": "APPROVE_FOR_PAYMENT", "recommended_amount": 6016.56,
+ "required_approver_role": "AP_MANAGER", "human_decision": "APPROVED",
+ "note": "Surcharge email is countersigned by the buyer.", "reviewer": "A. Okafor, AP Manager",
+ "decided_at": "2026-08-31T04:38:00+00:00",
+ "trajectory": "runs/recorded/final/CASE-005/trajectory.jsonl", "surface": "web console"}
+```
+
+A reviewer name is required and an unknown decision is rejected; the endpoint that writes
+the log is the only endpoint that writes anything. The console defaults to **replay** — it
+reads the committed trajectories, needs no credential, makes no network calls, and shows the
+same numbers `score.py` prints.
+
 ---
 
 ## 6. Honest notes
@@ -345,3 +365,4 @@ not a finding.
 | `runs/recorded/` | committed trajectories — every number above re-derives from these |
 | `make_counterfactual.py` | rebuilds the check-off run that measures the v6 lever, offline |
 | `out/packets/` | the human review packets |
+| `serve.py` + `webapp/` | the local console — `python serve.py`, replay by default, stdlib only |

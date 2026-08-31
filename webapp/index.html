@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ClearQueue console</title>
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+<header class="top">
+  <div class="brandrow">
+    <div class="brand">Clear<span>Queue</span></div>
+    <div class="tagline">Accounts-payable exception triage &mdash; the queue the ERP could not match</div>
+    <div class="spacer"></div>
+    <div class="row small">
+      <span class="muted">recorded run</span>
+      <select id="runSelect"></select>
+      <span id="credBadge" class="chip">credential &hellip;</span>
+    </div>
+  </div>
+  <div class="gatebanner">
+    <b>Nothing here has been paid, and nothing here can pay.</b>
+    Every line is a recommendation with its evidence attached; a named human signs it or
+    sends it back. High-value and unresolvable cases route to <code>ESCALATE_HUMAN</code>.
+  </div>
+  <nav class="tabs">
+    <button data-view="queue" class="on">Exception queue</button>
+    <button data-view="case">Case detail</button>
+    <button data-view="ladder">How it was built</button>
+    <button data-view="approvals">Approval log</button>
+  </nav>
+</header>
+
+<main>
+
+  <!-- ============================= QUEUE ============================= -->
+  <section class="view on" id="view-queue">
+    <h2 class="section">This morning&rsquo;s exception queue</h2>
+    <p class="lede">
+      These are invoices the ERP&rsquo;s automatic three-way match already refused. A specialist
+      works them one at a time, eight to fifteen minutes each, because the answer is usually
+      not in the structured data &mdash; it is in an email, a contract clause, or a unit of
+      measure that does not line up. Click any row to see what ClearQueue read and why it
+      decided what it did.
+    </p>
+
+    <div class="cards" id="queueCards"></div>
+
+    <div class="tablewrap">
+      <table id="queueTable">
+        <thead>
+          <tr>
+            <th>Case</th>
+            <th>Vendor</th>
+            <th>Invoice</th>
+            <th class="num">Billed</th>
+            <th>Recommendation</th>
+            <th class="num">Payable</th>
+            <th>Approver</th>
+            <th class="num">Tools</th>
+            <th>Evidence cited</th>
+            <th>vs. truth</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="small dim" style="margin-top:10px">
+      The &ldquo;vs. truth&rdquo; column compares against <code>cases/*/expected.json</code>, hand-authored
+      before any run and never shown to the agent. It is the same file <code>score.py</code> grades on.
+    </p>
+  </section>
+
+  <!-- ============================= CASE ============================= -->
+  <section class="view" id="view-case">
+    <div class="toolbar">
+      <div>
+        <label class="field" for="caseSelect">Case</label>
+        <select id="caseSelect"></select>
+      </div>
+      <div>
+        <label class="field" for="modeSelect">Re-run this case</label>
+        <select id="modeSelect">
+          <option value="live">live &mdash; real model, ~$0.09, ~30s</option>
+          <option value="mock">mock &mdash; the always-approve control</option>
+        </select>
+      </div>
+      <button class="btn primary" id="runBtn">Run it now</button>
+      <button class="btn" id="truthBtn">Reveal ground truth</button>
+      <div class="spacer"></div>
+      <span id="runStatus" class="small muted"></span>
+    </div>
+
+    <div id="modeNote"></div>
+
+    <div class="case-grid">
+      <div class="stack">
+        <div class="pane">
+          <h3>Evidence available</h3>
+          <div class="body tight">
+            <ul class="filelist" id="fileList"></ul>
+          </div>
+        </div>
+        <div class="pane">
+          <h3>Invoice header</h3>
+          <div class="body"><dl class="kv" id="invoiceKv"></dl></div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="pane">
+          <h3 id="fileTitle">Evidence viewer</h3>
+          <div class="body"><pre class="file" id="fileBody">Select a file on the left.</pre></div>
+        </div>
+        <div class="pane">
+          <h3>Recommendation</h3>
+          <div class="body" id="verdictPane"></div>
+        </div>
+        <div class="pane">
+          <h3>Review packet &mdash; the artifact a human signs</h3>
+          <div class="body scroll-560"><div class="md" id="packetPane"></div></div>
+        </div>
+      </div>
+
+      <div class="stack">
+        <div class="pane">
+          <h3>Agent trajectory</h3>
+          <div class="body scroll-560" id="tracePane"></div>
+        </div>
+        <div class="pane">
+          <h3>Approval gate</h3>
+          <div class="body" id="gatePane"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= LADDER ============================= -->
+  <section class="view" id="view-ladder">
+    <h2 class="section">Every version is the same code path with different levers</h2>
+    <p class="lede">
+      That is deliberate. If a rung beats the one below it, the only thing that changed is the
+      lever named in its row, so the delta can be attributed honestly. Same cases, same policy
+      document, same output schema, same deterministic scorer &mdash; no LLM judges anything here.
+    </p>
+
+    <h2 class="section" style="margin-top:22px">Free scores first: what a strategy with no model at all earns</h2>
+    <p class="lede">
+      Before crediting the agent with anything, three degenerate strategies are scored on the
+      same 24 cases. Approving everything already resolves 41.7% &mdash; and overpays $56,922.
+      Holding everything makes false approvals impossible and underpays $112,462. Caution is
+      not free, and neither number is a result.
+    </p>
+    <div class="tablewrap" style="margin-bottom:26px">
+      <table id="controlTable">
+        <thead><tr>
+          <th>Strategy</th><th class="num">Resolved</th><th class="num">False approvals</th>
+          <th class="num">Overpaid</th><th class="num">Underpaid</th><th class="num">Citations</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <h2 class="section">The ladder</h2>
+    <div class="tablewrap">
+      <table id="ladderTable">
+        <thead><tr>
+          <th>Version</th><th class="num">Resolved</th><th></th>
+          <th class="num">False appr.</th><th class="num">Overpaid</th>
+          <th class="num">Citations</th><th></th><th class="num">$/case</th><th>What changed</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+
+    <div class="alert warn" style="margin-top:20px; max-width:96ch">
+      <b>The row that is not a rung.</b>
+      <code>v6-counterfactual-no-check</code> is not a second run. It is the <em>same</em> committed
+      trajectories from <code>final</code>, replayed with each rejected verdict rolled back to what
+      the model said <em>before</em> the harness asked again. Model behaviour is held fixed, so the
+      difference is the lever and nothing else. Comparing two separate runs would have folded in
+      run-to-run variance &mdash; the exact mistake the v5 entry in CHANGELOG.md records as a
+      correction.
+    </div>
+
+    <div id="versionNotes" class="stack" style="margin-top:22px"></div>
+  </section>
+
+  <!-- ============================= APPROVALS ============================= -->
+  <section class="view" id="view-approvals">
+    <h2 class="section">Approval log</h2>
+    <p class="lede">
+      Ground rules 04 and 05: nothing consequential happens without a qualified human, and the
+      human has to be given enough to judge on. Every decision below is stamped with a name, a
+      time, and a link to the trajectory that produced the recommendation. An approval record
+      without those three things is not an audit trail.
+    </p>
+    <div class="tablewrap">
+      <table id="approvalTable">
+        <thead><tr>
+          <th>Decided</th><th>Case</th><th>Recommended</th><th class="num">Amount</th>
+          <th>Human decision</th><th>Reviewer</th><th>Note</th><th>Trajectory</th>
+        </tr></thead>
+        <tbody></tbody>
+      </table>
+    </div>
+    <p class="small dim" style="margin-top:10px">
+      Appended to <code>out/approvals.jsonl</code>. The file is gitignored: the gate is the
+      deliverable, a particular afternoon&rsquo;s clicks are not.
+    </p>
+  </section>
+
+</main>
+
+<script src="/static/app.js"></script>
+</body>
+</html>

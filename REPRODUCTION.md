@@ -67,7 +67,48 @@ Any stage can fail independently. What each one establishes:
 
 ---
 
-## Reproducing the measured table by hand
+## The console, if you would rather click than type
+
+```bash
+python serve.py
+```
+
+Opens `http://127.0.0.1:8765` in your browser. No credential, no installs, no network — it
+reads the committed trajectories in `runs/recorded/` and serves them with the standard
+library's `http.server`. There are no CDN links, no web fonts and no external requests in
+the page, so it renders with the network cable pulled.
+
+Four screens:
+
+- **Exception queue** — all 24 invoices with the recommendation, the amount, the approver,
+  the evidence cited, and whether it matched ground truth. The summary cards are the same
+  numbers `score.py --run runs/recorded/final` prints.
+- **Case detail** — the evidence files as the agent could read them, the recommendation, the
+  review packet, and the full trajectory as a timeline you can expand event by event.
+  `CASE-007` is the one to open: the citation check fires, and the second pass changes the
+  answer.
+- **How it was built** — the three degenerate controls, then the ladder, then each version's
+  written hypothesis *from before it was run*.
+- **Approval log** — the gate. Sign a case and it appends to `out/approvals.jsonl`.
+
+Two things the console can do that replay cannot, both on the Case detail screen:
+
+| Mode | What it does | Cost |
+|---|---|---|
+| **live** | re-runs one case against the real model right now, streaming the trajectory as it happens | ~$0.09, ~30 s, needs `.env.local` |
+| **mock** | runs the scripted fake model | free |
+
+**Read the mock honestly.** The mock's scripted policy *is* the always-approve control — that
+equality is stage 4 of `verify.py`. It approves every invoice at the billed amount and cites
+nothing, so a mock-driven demo shows 41.7% and every duplicate paid. It demonstrates that the
+harness works; it does not demonstrate the agent, and the console says so on screen rather
+than letting the number be mistaken for a result.
+
+The console's "run it now" button calls the same `solve_case()` that `run.py` calls. Its
+output goes to `runs/_webapp/`, which is gitignored — a demo cannot overwrite the committed
+evidence in `runs/recorded/`.
+
+
 
 ```bash
 # the headline comparison, plus the three degenerate controls
@@ -186,8 +227,11 @@ clearqueue/
 run.py                   triage CLI and the review gate
 score.py                 deterministic scorer, controls, selftest, replay
 verify.py                the five-stage offline check above
+serve.py                 the local console — routes, replay/live/mock, the approval endpoint
+webapp/                  index.html, app.js, style.css — no framework, no CDN, no web fonts
 runs/<version>/<case>/   trajectory.jsonl + verdict.json for every case
 runs/recorded/           the frozen bundle the README numbers come from
+runs/_webapp/            scratch output from the console's live and mock runs (gitignored)
 out/packets/CASE-XXX.md  human review packets
 ```
 

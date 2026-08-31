@@ -1,0 +1,23 @@
+# Credentials never enter the submission (ground rule 08).
+.env.local
+.env
+*.key
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Scratch: raw ladder console logs and scratch run directories.
+logs/
+runs/_*
+
+# A PyManager runtime shim that materialised in this directory. Not part of the project.
+/Python/
+
+# Everything else is deliberately committed:
+#   cases/         the dataset and its ground truth
+#   runs/          agent trajectories -- a required deliverable
+#   out/packets/   the human review packets

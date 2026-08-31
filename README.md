@@ -366,4 +366,3 @@ not a finding.
 | `make_counterfactual.py` | rebuilds the check-off run that measures the v6 lever, offline |
 | `out/packets/` | the human review packets |
 | `serve.py` + `webapp/` | the local console — `python serve.py`, replay by default, stdlib only |
-| `VIDEO.md` | the shot-by-shot script the submitted recording follows |

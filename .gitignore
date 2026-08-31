@@ -32,6 +32,11 @@ desktop.ini
 *.mkv
 *.zip
 
+# The shot-by-shot narration script. It is scaffolding for producing the video, not part of
+# the submission -- the recording is the deliverable, and stage directions addressed to me
+# are not something a reviewer should be reading instead of it. Kept on disk for recording.
+VIDEO.md
+
 # Written by the web app's approval gate at demo time. The gate is the deliverable; a
 # particular afternoon's clicks are not. Schema is documented in README section 5.
 out/approvals.jsonl

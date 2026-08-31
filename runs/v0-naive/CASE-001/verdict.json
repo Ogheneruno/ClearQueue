@@ -1,0 +1,35 @@
+{
+  "case_id": "CASE-001",
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 903.0,
+  "currency": "USD",
+  "required_approver_role": "AP_CLERK",
+  "defects": [],
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "rationale": "Three-way match reconciles exactly: PO-4401 line 1 (200 EACH @ 4.20), GR-7701 receipt of 200 EACH, and invoice INV-88120 for 200 EACH @ 4.20 = 840.00 net. Tax of 63.00 is the vendor's registered 7.5% state sales tax on 840.00. Buyer Dele Fashanu is an authorised buyer, currency matches, and no prior invoice or credit memo exists against this PO, so no duplicate exposure. No quantity, price, or UOM variance to hold on; pay gross 903.00 within terms 2/10 NET 30 to preserve the early-payment discount.",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 742,
+    "output_tokens": 474,
+    "cache_read_input_tokens": 0,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 6.31,
+    "cost_usd": 0.019498,
+    "version": "v0-naive",
+    "levers": [
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

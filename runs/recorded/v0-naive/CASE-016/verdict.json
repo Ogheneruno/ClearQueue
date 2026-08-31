@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-016",
+  "disposition": "SHORT_PAY",
+  "payable_amount": 8600.0,
+  "currency": "USD",
+  "required_approver_role": "AP_MANAGER",
+  "defects": [
+    "Unit price billed 4,075.00 USD against PO price 4,000.00 USD (+1.88%, 150.00 USD line variance) with no supporting price amendment, contract clause, or supplier correspondence",
+    "Invoice tax of 611.25 USD is computed on the overstated net; correct tax at the vendor's 7.5% rate on PO price is 600.00 USD"
+  ],
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "rationale": "Quantity and receipt agree exactly (2 EACH received on GR-7716 against 2 EACH ordered and billed), so the only defect is price. The billed unit price exceeds the PO price with no documentary authority in the file — no contract clause, no amendment, no supplier notice — so the uplift is an unauthorised price increase under the three-way match price-variance rule rather than a genuine ambiguity requiring a hold. The goods are received and the supplier is entitled to prompt payment of the undisputed amount, so pay at PO price: 8,000.00 net plus 7.5% jurisdictional tax of 600.00 = 8,600.00 USD, with the 161.25 USD difference short-paid and a remittance note issued. Vendor may rebill the difference with price documentation.",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 742,
+    "output_tokens": 1033,
+    "cache_read_input_tokens": 630,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 14.78,
+    "cost_usd": 0.02985,
+    "version": "v0-naive",
+    "levers": [
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

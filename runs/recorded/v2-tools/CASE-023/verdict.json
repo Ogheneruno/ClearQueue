@@ -1,0 +1,39 @@
+{
+  "case_id": "CASE-023",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json",
+    "correspondence/ceiling_authorisation.txt"
+  ],
+  "currency": "USD",
+  "defects": [],
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 3902.25,
+  "rationale": "The $242.00/EACH invoiced price exceeds the $220.00 PO price by $22.00, outside the clause 3 band (lower of 2% = $4.40 and $50.00). It is cured under clause 3.1: Priya Raman, a listed authorised buyer, authorised a ceiling of $250.00 per enclosure specifically for PO-4423, which covers $242.00. Receipt GR-7723 matches 15 EACH ordered and invoiced (clause 4), and recomputed 7.5% tax of $272.25 equals the supplier figure (clause 5). No defects; payable $3,902.25 with AP_CLERK approval (clause 10).",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 5644,
+    "output_tokens": 965,
+    "cache_read_input_tokens": 18822,
+    "api_calls": 3,
+    "tool_calls": 5,
+    "latency_s": 16.84,
+    "cost_usd": 0.061756,
+    "version": "v2-tools",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "evidence=dump"
+    ],
+    "turns": 3,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

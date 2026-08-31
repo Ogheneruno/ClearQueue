@@ -1,0 +1,40 @@
+{
+  "case_id": "CASE-015",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [
+    "Quantity shortfall: line 4 Gland Plate invoiced 25 EACH but only 20 EACH received (part-shipment, balance back-ordered) — clause 4",
+    "Tax discrepancy: supplier charged 609.84 (≈9%) versus 7.5% statutory rate on the corrected net (463.20), an overcharge beyond $0.02 — clause 5"
+  ],
+  "disposition": "ESCALATE_HUMAN",
+  "payable_amount": 6639.2,
+  "rationale": "Line 2 reconciles exactly once the CASE/EACH pack size of 12 is applied (40 CASE @ 24.60 = 480 EACH @ 2.05), which is normalisation and not a defect (clause 2). Line 3 at 45.80 vs PO 45.00 is within the lower of 2% ($0.90) or $50.00, so payable as invoiced (clause 3). Two defects remain: the line 4 short-delivery (pay on 20 received = 2,400.00, clause 4) and the supplier's tax overcharge at ~9% instead of the 7.5% vendor rate (clause 5). Corrected net 6,176.00 + recomputed tax 463.20 = 6,639.20; two defects trigger clause 11 escalation with this computed recommended payable, approvable at AP_CLERK level under clause 10.",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 1344,
+    "output_tokens": 1246,
+    "cache_read_input_tokens": 4161,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 15.42,
+    "cost_usd": 0.03995,
+    "version": "v1-baseline",
+    "levers": [
+      "policy",
+      "schema",
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

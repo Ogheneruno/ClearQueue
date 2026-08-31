@@ -1,0 +1,39 @@
+{
+  "case_id": "CASE-018",
+  "disposition": "SHORT_PAY",
+  "payable_amount": 2644.5,
+  "currency": "USD",
+  "required_approver_role": "AP_MANAGER",
+  "defects": [
+    "Line 2 delivery and handling charge of USD 640.00 is not on PO-4418 and is unsupported by any carrier documentation",
+    "Tax billed (USD 232.50) includes 7.5% on the disallowed surcharge; correct tax on the allowed goods line is USD 184.50"
+  ],
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "contract.md",
+    "vendor.json"
+  ],
+  "rationale": "Line 1 matches three ways: PO-4418 and GR-7718 both show 6 EACH at USD 410.00, so USD 2,460.00 plus 7.5% state tax (USD 184.50) is payable now to preserve the 2/10 discount. Clause 6.2 permits an oversize delivery line only as a pass-through of the documented carrier cost, and no carrier documentation accompanies the invoice; clause 6.3 confirms the charge cannot bypass PO approval as a non-PO item. Short-pay the USD 640.00 surcharge and its tax pending Kestrel's carrier invoice, after which it may be resubmitted.",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 1094,
+    "output_tokens": 854,
+    "cache_read_input_tokens": 630,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 10.48,
+    "cost_usd": 0.027135,
+    "version": "v0-naive",
+    "levers": [
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

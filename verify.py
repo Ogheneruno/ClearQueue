@@ -33,7 +33,10 @@ from pathlib import Path
 ROOT = Path(__file__).parent
 PY = sys.executable
 MOCK_RUN = ROOT / "runs" / "_verify_mock"
-REPLAY_RUN = ROOT / "runs" / "recorded"
+# The recorded bundle holds one directory per ladder version; stage 5 re-scores the
+# shipping configuration out of it.
+RECORDED = ROOT / "runs" / "recorded"
+REPLAY_RUN = RECORDED / "final"
 
 
 def _run(argv: list[str]) -> tuple[int, str]:
@@ -120,7 +123,7 @@ def main() -> int:
         stage("replay committed traces", code == 0, headline or out)
     else:
         stage("replay committed traces", False,
-              f"{REPLAY_RUN.as_posix()}/ not found — the recorded bundle is missing")
+              "runs/recorded/final/ not found — the recorded bundle is missing")
 
     shutil.rmtree(MOCK_RUN, ignore_errors=True)
 

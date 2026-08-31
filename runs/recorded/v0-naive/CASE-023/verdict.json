@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-023",
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 3902.25,
+  "currency": "USD",
+  "required_approver_role": "AP_MANAGER",
+  "defects": [
+    "Unit price $242.00 exceeds PO-4423 line price of $220.00 (+$22.00/unit, +$330.00 net); PO was never formally amended"
+  ],
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json",
+    "correspondence/ceiling_authorisation.txt"
+  ],
+  "rationale": "The price variance is covered by a written pre-authorisation from Priya Raman, a listed authorised buyer on V-1002, setting a $250.00/enclosure ceiling for PO-4423 through the end of Q1; the invoiced $242.00 is within that ceiling and the 2026-03-16 receipt falls in the covered period, so the variance is authorised rather than unilateral. Quantity three-way matches at 15 EACH (GR-7723) and tax of $272.25 is exactly 7.5% of net per vendor.json. Approve the full gross of $3,902.25, with AP_MANAGER sign-off because the correspondence ceiling substitutes for an unexecuted PO amendment.",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 993,
+    "output_tokens": 768,
+    "cache_read_input_tokens": 630,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 9.26,
+    "cost_usd": 0.02448,
+    "version": "v0-naive",
+    "levers": [
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

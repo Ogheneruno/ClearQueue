@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-024",
+  "disposition": "SHORT_PAY",
+  "payable_amount": 17888.0,
+  "currency": "USD",
+  "required_approver_role": "AP_MANAGER",
+  "defects": [
+    "Quantity billed (60 EACH) exceeds quantity received and accepted (52 EACH); 8 kits refused at dock as damaged in transit",
+    "Tax overstated proportionally: billed 1,440.00 on 19,200.00 vs 1,248.00 due on accepted value of 16,640.00"
+  ],
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "rationale": "GR-7724 records 52 of 60 kits accepted, with 8 refused at the dock as damaged, so title never passed on the refused units and the shortfall is a settled fact rather than an open variance requiring a hold (three-way match: pay to the lesser of PO, invoice, and receipt quantity). Price is at PO rate of 320.00/EACH and the buyer is authorised, so no price defect exists. Payable is 52 x 320.00 = 16,640.00 net plus 7.5% state sales tax of 1,248.00 = 17,888.00; short-pay difference of 2,752.00 requires AP_MANAGER sign-off. Terms 2/10 NET 30 remain available on the short-paid amount if released promptly.",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 760,
+    "output_tokens": 752,
+    "cache_read_input_tokens": 630,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 10.09,
+    "cost_usd": 0.022915,
+    "version": "v0-naive",
+    "levers": [
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-023",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json",
+    "correspondence/ceiling_authorisation.txt"
+  ],
+  "currency": "USD",
+  "defects": [],
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 3902.25,
+  "rationale": "The $242.00/EACH price exceeds the PO's $220.00 by $22.00, outside the clause 3 tolerance of $4.40 (2% of PO price, the lower of 2% and $50). The variance is cured under clause 3.1: Priya Raman, an authorised buyer, authorised up to $250.00 per enclosure on PO-4423 for the remainder of Q1, and the March delivery falls in that window. Receipt GR-7723 matches 15 EACH against the PO, and recomputed tax at 7.5% on $3,630.00 is $272.25, equal to the invoiced figure. Clean at $3,902.25, AP_CLERK per clause 10.",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 993,
+    "output_tokens": 583,
+    "cache_read_input_tokens": 4161,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 8.01,
+    "cost_usd": 0.021621,
+    "version": "v1-baseline",
+    "levers": [
+      "policy",
+      "schema",
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

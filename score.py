@@ -22,6 +22,7 @@ import sys
 from pathlib import Path
 
 CENT = 0.01
+HALF_CENT = 0.005
 
 APPROVE = "APPROVE_FOR_PAYMENT"
 DISPOSITIONS = [
@@ -68,7 +69,15 @@ def load_verdicts(run_dir: Path) -> dict[str, dict]:
 # --------------------------------------------------------------------------------------
 
 def money_eq(a: float, b: float) -> bool:
-    return abs(round(float(a), 2) - round(float(b), 2)) <= CENT
+    """Equal to the cent, which is what the primary metric claims.
+
+    This used to be `abs(...) <= CENT`, which accepted a full one-cent discrepancy and so
+    did not mean what the documentation said it meant. It flattered v4-verifier, whose
+    CASE-020 answer was a cent under the truth, into scoring as correct. Half a cent is the
+    widest tolerance consistent with "rounds to the same cent"; it absorbs float
+    representation noise and nothing else.
+    """
+    return abs(float(a) - float(b)) < HALF_CENT
 
 
 def score_case(truth: dict, verdict: dict | None) -> dict:
@@ -307,14 +316,16 @@ def selftest(cases_dir: Path) -> int:
     expect("perfect false approvals", r["false_approvals"], 0)
     expect("perfect overpay", r["overpay_exposure"], 0.0)
 
-    # 2. One cent off must fail the amount check but keep the disposition.
+    # 2. ONE cent off must fail the amount check but keep the disposition.
+    #    This test previously used two cents, which meant it passed against a scorer that
+    #    tolerated a full cent -- it was written around the bug instead of catching it.
     onecent = json.loads(json.dumps(perfect))
     target = "CASE-001"
-    onecent[target]["payable_amount"] = truth[target]["payable_amount"] + 0.02
+    onecent[target]["payable_amount"] = truth[target]["payable_amount"] + 0.01
     r = score_run(truth, onecent, "selftest/onecent")
-    expect("2c off disposition still 100", r["disposition_accuracy"], 100.0)
-    expect("2c off resolution drops", r["resolution_accuracy"] < 100.0, True)
-    expect("2c off overpay recorded", r["overpay_exposure"], 0.02)
+    expect("1c off disposition still 100", r["disposition_accuracy"], 100.0)
+    expect("1c off resolution drops", r["resolution_accuracy"] < 100.0, True)
+    expect("1c off overpay recorded", round(r["overpay_exposure"], 2), 0.01)
 
     # 3. Approving everything must produce the maximum false-approval rate.
     always = control_verdicts(truth, cases_dir, "always_approve")
@@ -342,7 +353,7 @@ def selftest(cases_dir: Path) -> int:
         return 1
     print("Scorer selftest passed (5 checks).")
     print("  - a perfect run scores 100% with zero exposure")
-    print("  - a 2-cent error fails the amount check but not the disposition check")
+    print("  - a one-cent error fails the amount check but not the disposition check")
     print("  - approving everything yields a 100% false-approval rate")
     print("  - a missing verdict is counted as unresolved, never skipped")
     print("  - holding everything shows as underpayment, so caution is not free")

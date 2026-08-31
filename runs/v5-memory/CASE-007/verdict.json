@@ -1,0 +1,51 @@
+{
+  "case_id": "CASE-007",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [
+    "Suspected duplicate: all five clause 8 conditions met against prior PAID invoice NW-9912"
+  ],
+  "disposition": "DUPLICATE_REJECT",
+  "payable_amount": 0.0,
+  "rationale": "Prior invoice NW-9912 (PAID) is same vendor after name normalisation (Nordwind Supply Co. / Nordwind Supply Company LLC), same PO-4407, identical gross of $3,225.00, dated 19 days apart, and neither invoice carries a service period — all five conditions of clause 8 are satisfied, and clause 8.1's recurring-charge exception does not apply. Quantities, price and tax otherwise reconcile exactly, confirming this is a re-bill of the same delivery (GR-7707), so nothing is payable per clause 12.",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 8400,
+    "output_tokens": 1344,
+    "cache_read_input_tokens": 27818,
+    "api_calls": 5,
+    "tool_calls": 8,
+    "latency_s": 27.54,
+    "cost_usd": 0.089509,
+    "version": "v5-memory",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "verifier",
+      "memory",
+      "evidence=tools"
+    ],
+    "turns": 4,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [
+      "invoice.json",
+      "po.json",
+      "receipt.json",
+      "vendor.json"
+    ],
+    "verification": {
+      "confirmed": true,
+      "issues": [],
+      "recomputed_payable": 0.0
+    }
+  }
+}

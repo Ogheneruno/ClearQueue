@@ -1,0 +1,37 @@
+{
+  "case_id": "CASE-010",
+  "disposition": "SHORT_PAY",
+  "payable_amount": 6665.0,
+  "currency": "USD",
+  "required_approver_role": "AP_MANAGER",
+  "defects": [
+    "Tax overcharged: invoiced USD 744.00 equals 12.0% of net, versus the vendor's registered 7.5% rate (USD 465.00) — USD 279.00 excess"
+  ],
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "rationale": "Quantity, UOM, unit price and line total match PO-4410 and GR-7710 exactly (200 EACH @ 31.00 = 6,200.00), so the goods portion is a clean three-way match. The only defect is the tax line: 744.00 implies 12% against the vendor master rate of 7.5% for the applicable state sales tax jurisdiction, giving correct tax of 465.00. Short-pay the 279.00 tax excess and pay 6,665.00 under the tax-variance short-pay clause; no price or quantity hold is warranted. Terms 2/10 NET 30 — process to capture the discount.",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 738,
+    "output_tokens": 820,
+    "cache_read_input_tokens": 630,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 10.85,
+    "cost_usd": 0.024505,
+    "version": "v0-naive",
+    "levers": [
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

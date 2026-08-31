@@ -1,0 +1,47 @@
+{
+  "case_id": "CASE-014",
+  "citations": [],
+  "currency": "USD",
+  "defects": [
+    "Quantity shortfall: 1200 CASE invoiced (30,000 EACH at pack size 25) but only 1050 CASE received — SHORT_PAY on received quantity (clause 4)",
+    "Tax overcharge: supplier billed $3,240.00 (9% of $36,000) versus $2,362.50 recomputed at the vendor's 7.5% rate on the corrected net of $31,500.00, a $877.50 discrepancy (clause 5)"
+  ],
+  "disposition": "ESCALATE_HUMAN",
+  "payable_amount": 32362.5,
+  "rationale": "UOM normalises cleanly at this PO's pack size of 25 EACH/CASE (30,000 EACH = 1,200 CASE at $30.00/CASE, matching the PO price exactly — clause 2, not a defect). Two defects remain: a 150-case under-delivery per GR-7714, so payment is limited to 1,050 CASE = $31,500.00 (clause 4), and a tax overcharge, corrected to $2,362.50 for a gross of $33,862.50 (clause 5). Netting open credit memo CM-2026-014 of $1,500.00 gives $32,362.50 (clause 9). Two defects and a payable above $25,000.00 both force escalation to the Controller (clauses 10, 11).",
+  "required_approver_role": "CONTROLLER",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 31111,
+    "output_tokens": 2222,
+    "cache_read_input_tokens": 54914,
+    "api_calls": 9,
+    "tool_calls": 13,
+    "latency_s": 43.94,
+    "cost_usd": 0.238562,
+    "version": "v5-memory",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "verifier",
+      "memory",
+      "evidence=tools"
+    ],
+    "turns": 8,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [
+      "invoice.json",
+      "po.json",
+      "receipt.json",
+      "vendor.json"
+    ],
+    "verification": {
+      "confirmed": true,
+      "issues": [],
+      "recomputed_payable": 32362.5
+    }
+  }
+}

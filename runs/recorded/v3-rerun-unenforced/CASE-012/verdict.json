@@ -1,0 +1,45 @@
+{
+  "case_id": "CASE-012",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [
+    "Over-delivery beyond 5%: 118 EACH received against a PO quantity of 100 EACH (18% over, clause 4)"
+  ],
+  "disposition": "HOLD_QUANTITY_VARIANCE",
+  "payable_amount": 0.0,
+  "rationale": "Both sides are already in the PO's unit (EACH, no CASE conversion needed) and the unit price matches the PO exactly, so there is no price issue. The receipt shows 118 EACH delivered against 100 ordered — an 18% over-delivery, far beyond the 5% tolerance in clause 4 — so the invoice is held for receiving/buyer action with payable 0.00 (clause 12). Only this single defect is present, so clause 11 escalation is not triggered.",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 6642,
+    "output_tokens": 963,
+    "cache_read_input_tokens": 32815,
+    "api_calls": 5,
+    "tool_calls": 8,
+    "latency_s": 21.0,
+    "cost_usd": 0.073692,
+    "version": "final",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "evidence=tools"
+    ],
+    "turns": 5,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [
+      "invoice.json",
+      "po.json",
+      "receipt.json",
+      "vendor.json"
+    ],
+    "verification": null
+  }
+}

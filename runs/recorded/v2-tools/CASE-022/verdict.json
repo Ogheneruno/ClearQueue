@@ -1,0 +1,37 @@
+{
+  "case_id": "CASE-022",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [],
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 4300.0,
+  "rationale": "Not a duplicate: the invoice carries a distinct service period (2026-02-15/2026-03-14) versus the prior paid invoice HL-3301 (2026-02-01/2026-02-28), so clause 8's fifth condition fails and clause 8.1 treats it as a legitimate recurring monthly charge (the billed name also normalises differently). Price matches the PO exactly (clause 3), recomputed 7.5% tax equals the supplier's $300.00 (clause 5), and this is a SERVICES PO so the absence of a goods receipt is not a defect (clause 1). No open credit memos; $4,300.00 falls in the AP_CLERK band (clause 10).",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 6375,
+    "output_tokens": 1418,
+    "cache_read_input_tokens": 18822,
+    "api_calls": 3,
+    "tool_calls": 5,
+    "latency_s": 21.19,
+    "cost_usd": 0.076736,
+    "version": "v2-tools",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "evidence=dump"
+    ],
+    "turns": 3,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

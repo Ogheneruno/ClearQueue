@@ -1,0 +1,53 @@
+{
+  "case_id": "CASE-010",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "confidence": "high",
+  "currency": "USD",
+  "defects": [
+    "Tax overcharge: supplier billed $744.00 tax (12%) on net $6,200.00; correct tax at vendor rate 7.5% is $465.00, a $279.00 overcharge"
+  ],
+  "disposition": "SHORT_PAY",
+  "payable_amount": 6665.0,
+  "rationale": "Price and quantity match exactly (200 EACH received per GR-7710 at $31.00/EACH, PO price identical), so clauses 3 and 4 are clean. The single defect is tax: recomputed at the vendor's 7.5% rate the tax is $465.00, not the invoiced $744.00 (clause 5) — supplier overcharge, so short-pay the corrected gross of $6,665.00. No credit memos (clause 9); one defect only, so no escalation (clause 11). Threshold puts approval with AP_CLERK (clause 10).",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 9490,
+    "output_tokens": 1093,
+    "cache_read_input_tokens": 34635,
+    "api_calls": 5,
+    "tool_calls": 10,
+    "latency_s": 21.79,
+    "cost_usd": 0.092092,
+    "version": "vX-confidence",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "verifier",
+      "memory",
+      "confidence",
+      "evidence=tools"
+    ],
+    "turns": 5,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [
+      "invoice.json",
+      "po.json",
+      "receipt.json",
+      "vendor.json"
+    ],
+    "verification": {
+      "confirmed": true,
+      "issues": [],
+      "skipped_on_confidence": true
+    }
+  }
+}

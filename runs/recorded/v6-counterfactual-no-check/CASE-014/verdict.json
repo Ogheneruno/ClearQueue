@@ -1,0 +1,48 @@
+{
+  "case_id": "CASE-014",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [
+    "Quantity shortfall: 1050 CASE received against 1200 CASE ordered and invoiced (clause 4 under-delivery)",
+    "Tax overcharge: supplier billed 3,240.00 (9%) versus 2,362.50 recomputed at the vendor's 7.5% rate on the corrected net (clause 5)"
+  ],
+  "disposition": "ESCALATE_HUMAN",
+  "payable_amount": 32362.5,
+  "rationale": "Invoice in EACH normalises cleanly to the PO's CASE at pack size 25 (1,200 CASE @ $30.00, clause 2), so price is exactly on PO. Two defects exist: only 1,050 of 1,200 cases were received, so the line corrects to $31,500.00 on the receipt (clause 4), and the supplier's tax of $3,240.00 is a 9% charge against the vendor's 7.5% rate, correct tax $2,362.50 (clause 5). Corrected gross $33,862.50 less open credit memo CM-2026-014 of $1,500.00 gives $32,362.50 (clause 9). Two defects and a payable above $25,000.00 both force escalation (clause 11); CONTROLLER approval applies (clause 10).",
+  "required_approver_role": "CONTROLLER",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 15704,
+    "output_tokens": 1752,
+    "cache_read_input_tokens": 45941,
+    "api_calls": 7,
+    "tool_calls": 12,
+    "latency_s": 31.7,
+    "cost_usd": 0.14529,
+    "version": "final",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "enforce_citations",
+      "evidence=tools"
+    ],
+    "turns": 7,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [
+      "invoice.json",
+      "po.json",
+      "receipt.json",
+      "vendor.json"
+    ],
+    "verification": null,
+    "citation_retry": null
+  }
+}

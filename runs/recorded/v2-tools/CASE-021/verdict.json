@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-021",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [],
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 0.0,
+  "rationale": "Three-way match is exact: 12 EACH ordered, received and invoiced at $118.00/EACH (clauses 3, 4), and recomputed tax at 7.5% equals the supplier's $106.20 (clause 5). The open $2,000.00 credit memo CM-2026-021 nets against the $1,522.20 gross and floors the payable at $0.00 (clause 9); netting is not a defect (clause 11.1), so approval sits with AP_CLERK (clause 10).",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 7913,
+    "output_tokens": 919,
+    "cache_read_input_tokens": 25096,
+    "api_calls": 4,
+    "tool_calls": 6,
+    "latency_s": 18.54,
+    "cost_usd": 0.075088,
+    "version": "v2-tools",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "evidence=dump"
+    ],
+    "turns": 4,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

@@ -1,0 +1,40 @@
+{
+  "case_id": "CASE-015",
+  "disposition": "SHORT_PAY",
+  "payable_amount": 6604.8,
+  "currency": "USD",
+  "required_approver_role": "AP_MANAGER",
+  "defects": [
+    "Line 3 unit price billed at 45.80 vs PO 45.00 — unauthorised price increase of 32.00",
+    "Line 4 billed 25 EACH but only 20 received (part-shipment, balance on back order) — 600.00 over-billed",
+    "Tax charged at 9.0% (609.84) vs vendor's registered rate of 7.5% — 149.04 tax overcharge",
+    "Line 2 UOM mismatch (40 CASE vs 480 EACH) — resolved, not a defect"
+  ],
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "rationale": "Line 2 reconciles exactly once the CASE pack size of 12 is applied (40 CASE = 480 EACH at 2.05/EACH = 984.00), so the UOM difference is not an exception. Three-way match fails on line 3 (billed 45.80 against PO price 45.00, no supporting price amendment) and line 4 (billed 25 units against goods receipt GR-7715 of 20; gland plates part-shipped, balance on back order) — pay to the lower of PO price and received quantity per the price-variance and quantity-matching clauses. Tax is recomputed at the vendor's registered 7.5% jurisdiction rate rather than the 9.0% billed. Net payable 6,144.00 + tax 460.80 = 6,604.80; the 5 back-ordered gland plates remain invoiceable on receipt.",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 1344,
+    "output_tokens": 1140,
+    "cache_read_input_tokens": 630,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 14.65,
+    "cost_usd": 0.035535,
+    "version": "v0-naive",
+    "levers": [
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

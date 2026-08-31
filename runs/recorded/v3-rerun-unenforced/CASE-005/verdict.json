@@ -1,0 +1,39 @@
+{
+  "case_id": "CASE-005",
+  "citations": [],
+  "currency": "USD",
+  "defects": [],
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 6016.56,
+  "rationale": "The 6.0% unit-price increase ($88.00 -> $93.28) exceeds the clause 3 band (lower of 2% / $50.00 = $1.76), but is cured under clause 3.1: authorised buyer Dele Fashanu approved up to 6% on PO-4405, conduit line only, in writing. Receipt GR-7705 confirms 60 EACH ordered/received/invoiced with no quantity variance (clause 4), and recomputed tax at 7.5% matches the supplier's $419.76 exactly (clause 5). No credit memos; net payable $6,016.56 falls in the AP_CLERK band (clauses 9-10).",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 8809,
+    "output_tokens": 1104,
+    "cache_read_input_tokens": 32815,
+    "api_calls": 5,
+    "tool_calls": 11,
+    "latency_s": 21.19,
+    "cost_usd": 0.088053,
+    "version": "final",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "evidence=tools"
+    ],
+    "turns": 5,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [
+      "invoice.json",
+      "po.json",
+      "receipt.json",
+      "vendor.json",
+      "correspondence/surcharge_approval.txt"
+    ],
+    "verification": null
+  }
+}

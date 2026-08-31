@@ -1,0 +1,39 @@
+{
+  "case_id": "CASE-016",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "vendor.json",
+    "receipt.json"
+  ],
+  "currency": "USD",
+  "defects": [
+    "Uncured price variance: invoiced $4,075.00/EACH vs PO $4,000.00/EACH, a $75.00 overage exceeding the $50.00 per-line cap (clause 3)"
+  ],
+  "disposition": "HOLD_PRICE_VARIANCE",
+  "payable_amount": 0.0,
+  "rationale": "Line 1 is invoiced at $4,075.00 against a PO price of $4,000.00. Clause 3 caps tolerance at the lower of 2% ($80.00) or $50.00, so the $75.00 increase is outside tolerance. No written buyer authorisation referencing PO-4416 from an authorised buyer (Dele Fashanu or Priya Raman) is in evidence, so clause 3.1 does not cure it. Quantities match the receipt (2 EACH) and tax of $611.25 equals 7.5% of the invoiced net, so this is the sole defect — hold rather than escalate, per clauses 11 and 12.",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 742,
+    "output_tokens": 795,
+    "cache_read_input_tokens": 4161,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 10.41,
+    "cost_usd": 0.025666,
+    "version": "v1-baseline",
+    "levers": [
+      "policy",
+      "schema",
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

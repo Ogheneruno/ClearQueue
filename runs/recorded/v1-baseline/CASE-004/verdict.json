@@ -1,0 +1,39 @@
+{
+  "case_id": "CASE-004",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "vendor.json",
+    "correspondence/supplier_price_notice.txt"
+  ],
+  "currency": "USD",
+  "defects": [
+    "Price variance outside tolerance and uncured: invoiced $154.00/EACH vs PO $145.00/EACH (+$9.00, tolerance $2.90)"
+  ],
+  "disposition": "HOLD_PRICE_VARIANCE",
+  "payable_amount": 0.0,
+  "rationale": "Invoiced unit price of $154.00 exceeds the PO price of $145.00 by $9.00, above the clause 3 tolerance (lower of 2% = $2.90 or $50.00). The supplier's own price-adjustment notice is not authorisation from a listed authorised buyer (Dele Fashanu or Priya Raman), so clause 3.1 does not cure the variance. Quantities match after receipt (80 EACH) and tax at 7.5% is correct, so this is the single defect; buyer action required per clause 12.",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 1019,
+    "output_tokens": 671,
+    "cache_read_input_tokens": 4161,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 9.38,
+    "cost_usd": 0.02395,
+    "version": "v1-baseline",
+    "levers": [
+      "policy",
+      "schema",
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

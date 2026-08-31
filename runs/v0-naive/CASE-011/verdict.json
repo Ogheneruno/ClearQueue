@@ -1,0 +1,36 @@
+{
+  "case_id": "CASE-011",
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 9933.0,
+  "currency": "USD",
+  "required_approver_role": "AP_CLERK",
+  "defects": [],
+  "citations": [
+    "contract.md",
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "rationale": "The apparent 10% price variance is purely the contractual currency conversion: Clause 4.2 fixes EUR 1.00 = USD 1.10 for invoices dated 1 Jan - 31 Mar 2026, and this invoice is dated 2026-03-12, so PO line EUR 210.00 converts to exactly USD 231.00 and EUR 8,400.00 to USD 9,240.00. USD invoicing is permitted under Clause 4.1 and not suspended (Clause 4.3 applies only after 31 March). Quantity matches three ways (PO 40 / GR-7711 40 / invoice 40 EACH), and tax of USD 693.00 is the vendor's 7.5% rate applied correctly. No defect; pay gross USD 9,933.00 on NET 45.",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 1018,
+    "output_tokens": 666,
+    "cache_read_input_tokens": 630,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 7.99,
+    "cost_usd": 0.022055,
+    "version": "v0-naive",
+    "levers": [
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

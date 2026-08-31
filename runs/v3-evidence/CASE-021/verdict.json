@@ -1,0 +1,43 @@
+{
+  "case_id": "CASE-021",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [],
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 0.0,
+  "rationale": "Price, quantity (12 EACH ordered, received and invoiced) and 7.5% tax all reconcile exactly against the PO and goods receipt, so the three-way match is clean with no defects (clauses 1, 3, 4, 5). The open $2,000.00 credit memo CM-2026-021 nets against the $1,522.20 gross under clause 9, flooring the payable at $0.00; netting is not a defect (clause 11.1). Approval sits with AP_CLERK per clause 10.",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 10840,
+    "output_tokens": 1137,
+    "cache_read_input_tokens": 39378,
+    "api_calls": 6,
+    "tool_calls": 10,
+    "latency_s": 23.01,
+    "cost_usd": 0.102314,
+    "version": "v3-evidence",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "evidence=tools"
+    ],
+    "turns": 6,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [
+      "invoice.json",
+      "po.json",
+      "receipt.json",
+      "vendor.json"
+    ],
+    "verification": null
+  }
+}

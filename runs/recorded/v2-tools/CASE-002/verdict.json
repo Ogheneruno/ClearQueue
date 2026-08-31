@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-002",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [],
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 1032.0,
+  "rationale": "The only discrepancy was unit of measure: 480 EACH @ $2.00 normalises to 40 CASE @ $24.00 using the pack size of 12 (clause 2), which matches the PO exactly and is not a defect. Receipt GR-7702 confirms 40 CASE received (clause 4), and recomputed tax at 7.5% equals the billed $72.00 (clause 5). Clean three-way match; net payable $1,032.00 falls in the AP_CLERK band (clause 10).",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 5358,
+    "output_tokens": 928,
+    "cache_read_input_tokens": 18822,
+    "api_calls": 3,
+    "tool_calls": 5,
+    "latency_s": 17.38,
+    "cost_usd": 0.059401,
+    "version": "v2-tools",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "evidence=dump"
+    ],
+    "turns": 3,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

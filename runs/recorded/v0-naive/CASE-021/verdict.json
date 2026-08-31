@@ -1,0 +1,37 @@
+{
+  "case_id": "CASE-021",
+  "disposition": "SHORT_PAY",
+  "payable_amount": 0.0,
+  "currency": "USD",
+  "required_approver_role": "AP_MANAGER",
+  "defects": [
+    "Open credit memo CM-2026-021 ($2,000.00) not applied by supplier; invoice billed at full gross value"
+  ],
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "rationale": "Three-way match is clean: 12 EACH received on GR-7721 against 12 EACH on PO-4421 at the PO price of $118.00, and tax of $106.20 is exactly the vendor's 7.5% rate, so there is no price or quantity defect. The only exception is open credit memo CM-2026-021 for $2,000.00 (agreed settlement on PO-4372), which under standard netting practice must be offset against the next payable to the same vendor (V-1001). The credit exceeds the $1,522.20 gross, so the invoice is fully settled by offset with $477.80 of credit remaining open for future application; no cash disbursement and no early-payment discount applies.",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 830,
+    "output_tokens": 968,
+    "cache_read_input_tokens": 630,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 12.13,
+    "cost_usd": 0.028665,
+    "version": "v0-naive",
+    "levers": [
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

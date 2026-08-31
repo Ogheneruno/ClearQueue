@@ -1,0 +1,39 @@
+{
+  "case_id": "CASE-014",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [
+    "Quantity shortfall: 1050 CASE received against 1200 CASE ordered/invoiced (30,000 EACH invoiced vs 26,250 EACH received)"
+  ],
+  "disposition": "ESCALATE_HUMAN",
+  "payable_amount": 32362.5,
+  "rationale": "After UOM normalisation (clause 2, CASE = 25 EACH) the invoiced 30,000 EACH @ $1.20 matches the PO's 1,200 CASE @ $30.00 exactly, so price is clean. The receipt shows only 1,050 CASE (26,250 EACH) delivered, an under-delivery, so the payable is short-paid on the received quantity (clause 4): net $31,500.00, tax recomputed at 7.5% = $2,362.50 (clause 5), gross $33,862.50, less the open $1,500.00 credit memo (clause 9) = $32,362.50. Only one defect exists, but the net payable exceeds $25,000.00, so clause 11 requires ESCALATE_HUMAN with a computed recommendation and CONTROLLER authority (clause 10).",
+  "required_approver_role": "CONTROLLER",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 875,
+    "output_tokens": 1070,
+    "cache_read_input_tokens": 4161,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 13.33,
+    "cost_usd": 0.033205,
+    "version": "v1-baseline",
+    "levers": [
+      "policy",
+      "schema",
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

@@ -1,0 +1,53 @@
+{
+  "case_id": "CASE-024",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "confidence": "high",
+  "currency": "USD",
+  "defects": [
+    "Quantity shortfall: 60 EACH invoiced but only 52 EACH received (GR-7724; 8 kits damaged in transit and refused at the dock)"
+  ],
+  "disposition": "SHORT_PAY",
+  "payable_amount": 17888.0,
+  "rationale": "Price matches PO exactly ($320.00/EACH, clause 3) and no UOM conversion applies. The receipt shows only 52 of 60 kits accepted, so under clause 4 the payable is computed on the received quantity: 52 × $320.00 = $16,640.00 net, plus recomputed tax at the vendor's 7.5% rate = $1,248.00, giving $17,888.00. The supplier's $1,440.00 tax was correct for the invoiced quantity, so this is a single defect (the shortfall), not a separate tax discrepancy — clause 11 escalation is not triggered. No credit memos outstanding; clause 10 places $17,888.00 with AP_MANAGER.",
+  "required_approver_role": "AP_MANAGER",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 16589,
+    "output_tokens": 1383,
+    "cache_read_input_tokens": 41562,
+    "api_calls": 6,
+    "tool_calls": 11,
+    "latency_s": 26.91,
+    "cost_usd": 0.138301,
+    "version": "vX-confidence",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "verifier",
+      "memory",
+      "confidence",
+      "evidence=tools"
+    ],
+    "turns": 6,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [
+      "invoice.json",
+      "po.json",
+      "receipt.json",
+      "vendor.json"
+    ],
+    "verification": {
+      "confirmed": true,
+      "issues": [],
+      "skipped_on_confidence": true
+    }
+  }
+}

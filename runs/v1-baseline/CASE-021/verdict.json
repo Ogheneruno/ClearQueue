@@ -1,0 +1,37 @@
+{
+  "case_id": "CASE-021",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [],
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 0.0,
+  "rationale": "Three-way match is exact: PO, receipt and invoice all show 12 EACH at $118.00, and recomputed tax at 7.5% of $1,416.00 is $106.20, matching the invoice gross of $1,522.20 (clauses 1, 3, 5). The open credit memo CM-2026-021 of $2,000.00 exceeds the gross, so under clause 9 the payable nets to the $0.00 floor; credit-memo netting is not a defect (clause 11.1). Net payable of $0.00 falls in the AP_CLERK band (clause 10).",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 830,
+    "output_tokens": 484,
+    "cache_read_input_tokens": 4161,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 6.55,
+    "cost_usd": 0.01833,
+    "version": "v1-baseline",
+    "levers": [
+      "policy",
+      "schema",
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

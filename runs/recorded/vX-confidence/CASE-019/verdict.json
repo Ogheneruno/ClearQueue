@@ -1,0 +1,53 @@
+{
+  "case_id": "CASE-019",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "confidence": "high",
+  "currency": "USD",
+  "defects": [
+    "Tax undercharged: supplier billed $65.00 tax on net $1,300.00; correct tax at vendor rate 7.5% is $97.50, a $32.50 shortfall (clause 5)"
+  ],
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 1397.5,
+  "rationale": "Price and quantity match exactly (400 EACH @ $3.25 ordered, received on GR-7719 and invoiced), so clauses 3 and 4 are clean. The only defect is tax: vendor.json rate 7.5% on the $1,300.00 net gives $97.50, but the supplier billed $65.00 — an undercharge, so per clause 5 the higher recomputed total of $1,397.50 is paid and flagged. Single defect, so no clause 11 escalation; AP_CLERK approves under clause 10.",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 11272,
+    "output_tokens": 1252,
+    "cache_read_input_tokens": 34635,
+    "api_calls": 5,
+    "tool_calls": 10,
+    "latency_s": 22.59,
+    "cost_usd": 0.104978,
+    "version": "vX-confidence",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "verifier",
+      "memory",
+      "confidence",
+      "evidence=tools"
+    ],
+    "turns": 5,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [
+      "invoice.json",
+      "po.json",
+      "receipt.json",
+      "vendor.json"
+    ],
+    "verification": {
+      "confirmed": true,
+      "issues": [],
+      "skipped_on_confidence": true
+    }
+  }
+}

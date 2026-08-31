@@ -1,0 +1,46 @@
+{
+  "case_id": "CASE-015",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [
+    "Quantity shortfall on line 4: 25 EACH invoiced, 20 EACH received (clause 4)",
+    "Tax overcharge: supplier billed 609.84 (9.0% of net) vs 7.5% vendor rate; correct tax on corrected net is 463.20, a 146.64 overcharge (clause 5)"
+  ],
+  "disposition": "ESCALATE_HUMAN",
+  "payable_amount": 6639.2,
+  "rationale": "Line 2 reconciles exactly once the CASE->EACH pack size of 12 is applied (40 CASE @ $24.60 = 480 EACH @ $2.05), and line 3's $45.80 vs $45.00 is inside the lower-of-2%/$50 band ($0.90) — neither is a defect (clauses 2, 3). Two defects remain: line 4 was part-shipped (20 of 25 received), so it pays on the receipt at $2,400.00 (clause 4), and the supplier applied a 9.0% tax rate instead of the vendor's 7.5% (clause 5). Corrected net $6,176.00 + tax $463.20 = $6,639.20; two defects force ESCALATE_HUMAN under clause 11 with this recommended payable, approval band AP_CLERK (clause 10).",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 11372,
+    "output_tokens": 2035,
+    "cache_read_input_tokens": 32815,
+    "api_calls": 5,
+    "tool_calls": 13,
+    "latency_s": 34.5,
+    "cost_usd": 0.124143,
+    "version": "v3-evidence",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "evidence=tools"
+    ],
+    "turns": 5,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [
+      "invoice.json",
+      "po.json",
+      "receipt.json",
+      "vendor.json"
+    ],
+    "verification": null
+  }
+}

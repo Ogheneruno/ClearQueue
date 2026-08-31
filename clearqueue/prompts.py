@@ -232,3 +232,17 @@ REVISION_PROMPT = """The control check did not confirm your verdict:
 
 Address each point. Where the check is right, correct your verdict. Where it is wrong, say
 why in the rationale and keep your figure. Return the verdict in the same format."""
+
+
+CITATION_RETRY_PROMPT = """Your verdict is not accepted yet, for a provenance reason only:
+
+{problem}
+
+A reviewer has to sign this recommendation, so every figure in it needs a source they can
+open. List in "citations" the case-relative path of each file the decision actually rests
+on -- the structured ones count, not only correspondence: if receipt.json settled the
+quantity or vendor.json settled the tax rate, cite them.
+
+**Do not change your disposition, your payable amount or your defects.** You are being asked
+for the paths you used, not for a different answer. Return the same verdict in the same
+format with citations filled in."""

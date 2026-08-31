@@ -1,0 +1,49 @@
+{
+  "case_id": "CASE-001",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [],
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 903.0,
+  "rationale": "Three-way match on a GOODS PO is complete: PO 200 EACH @ $4.20, receipt GR-7701 confirms 200 EACH, invoice bills 200 EACH @ $4.20 (clauses 1, 3, 4). Tax at the vendor's 7.5% rate recomputes to $63.00 exactly, matching the supplier figure (clause 5). No surcharges, no credit memos, no prior invoices; net payable $903.00 falls in the AP_CLERK band (clause 10).",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 11161,
+    "output_tokens": 1111,
+    "cache_read_input_tokens": 27818,
+    "api_calls": 6,
+    "tool_calls": 11,
+    "latency_s": 23.3,
+    "cost_usd": 0.139826,
+    "version": "v5-memory",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "verifier",
+      "memory",
+      "evidence=tools"
+    ],
+    "turns": 5,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [
+      "invoice.json",
+      "po.json",
+      "receipt.json",
+      "vendor.json"
+    ],
+    "verification": {
+      "confirmed": true,
+      "issues": [],
+      "recomputed_payable": 903.0
+    }
+  }
+}

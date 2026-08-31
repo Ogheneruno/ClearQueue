@@ -1,0 +1,45 @@
+{
+  "case_id": "CASE-002",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [],
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 1032.0,
+  "rationale": "The only exception was unit-of-measure: the supplier billed 480 EACH @ $2.00 against a PO of 40 CASE @ $24.00, and at the pack size of 12 in vendor.json these are identical ($960.00 net). Clause 2 makes that a routine normalisation, not a defect. Receipt GR-7702 confirms 40 CASE received (clause 1 three-way match satisfied), price variance is $0.00 (clause 3), and recomputed tax at 7.5% is exactly $72.00 (clause 5). No credit memos; net payable $1,032.00 falls in the AP_CLERK band (clause 10).",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 7701,
+    "output_tokens": 1175,
+    "cache_read_input_tokens": 32815,
+    "api_calls": 5,
+    "tool_calls": 10,
+    "latency_s": 20.91,
+    "cost_usd": 0.084288,
+    "version": "final",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "enforce_citations",
+      "evidence=tools"
+    ],
+    "turns": 5,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [
+      "invoice.json",
+      "po.json",
+      "receipt.json",
+      "vendor.json"
+    ],
+    "verification": null,
+    "citation_retry": null
+  }
+}

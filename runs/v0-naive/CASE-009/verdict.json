@@ -1,0 +1,38 @@
+{
+  "case_id": "CASE-009",
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 3311.0,
+  "currency": "USD",
+  "required_approver_role": "AP_CLERK",
+  "defects": [
+    "Freight line not present on PO-4409 (permitted pass-through under Clause 6.2)"
+  ],
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json",
+    "contract.md"
+  ],
+  "rationale": "Goods line matches PO and receipt exactly (150 EACH @ $18.00 = $2,700.00). The $380.00 expedited freight line is a permitted pass-through under Clause 6.2: GR-7709 records that production requested expedited overnight delivery, and the charge is below the $500.00 per-shipment ceiling, so no prior written buyer approval is required. Tax of $231.00 is 7.5% of the full $3,080.00 net including freight, consistent with Clause 6.3. No price adjustment is claimed, so Clause 9.1 is not engaged. Pay gross $3,311.00; 2/10 discount available if paid by 18 March 2026.",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 1239,
+    "output_tokens": 626,
+    "cache_read_input_tokens": 630,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 7.39,
+    "cost_usd": 0.02216,
+    "version": "v0-naive",
+    "levers": [
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "case_id": "CASE-001",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [],
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 903.0,
+  "rationale": "PO, receipt and invoice agree exactly on 200 EACH at $4.20 (no UOM conversion needed) and the 3-way match for this GOODS PO is complete per clause 1. Recomputed tax at the vendor's 7.5% rate is $63.00, identical to the billed figure (clause 5), with no non-PO lines, credit memos or prior invoices. Net payable $903.00 falls in the AP_CLERK band under clause 10.",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 742,
+    "output_tokens": 338,
+    "cache_read_input_tokens": 0,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 6.15,
+    "cost_usd": 0.038166,
+    "version": "v1-baseline",
+    "levers": [
+      "policy",
+      "schema",
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

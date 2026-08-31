@@ -1,0 +1,30 @@
+{
+  "case_id": "CASE-017",
+  "disposition": null,
+  "payable_amount": null,
+  "currency": "USD",
+  "required_approver_role": null,
+  "defects": [],
+  "citations": [],
+  "rationale": "No parseable verdict was produced.",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 1298,
+    "output_tokens": 0,
+    "cache_read_input_tokens": 630,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 1.05,
+    "cost_usd": 0.006805,
+    "version": "v0-naive",
+    "levers": [
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "refusal",
+    "parse_failure": true,
+    "refused": true,
+    "files_read": [],
+    "verification": null
+  }
+}

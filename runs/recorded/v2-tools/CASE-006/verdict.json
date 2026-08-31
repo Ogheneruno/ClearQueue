@@ -1,0 +1,35 @@
+{
+  "case_id": "CASE-006",
+  "citations": [],
+  "currency": "USD",
+  "defects": [
+    "Quantity shortfall: 60 EACH received against 100 invoiced (clause 4 under-delivery)"
+  ],
+  "disposition": "SHORT_PAY",
+  "payable_amount": 612.75,
+  "rationale": "The goods receipt shows only 60 of 100 EACH delivered (40 on backorder), so under clause 4 the invoice is short-paid on the received quantity: 60 x $9.50 = $570.00 net. Unit price matches the PO exactly (clause 3) and no UOM conversion applies. Tax is recomputed on the corrected net at the vendor's 7.5% rate = $42.75, giving $612.75 gross; the supplier's $71.25 simply reflects the over-invoiced quantity, so this is the single quantity defect, not a second tax defect. No credit memos; $612.75 falls in the AP_CLERK band (clause 10).",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 7069,
+    "output_tokens": 997,
+    "cache_read_input_tokens": 25096,
+    "api_calls": 4,
+    "tool_calls": 5,
+    "latency_s": 20.67,
+    "cost_usd": 0.072818,
+    "version": "v2-tools",
+    "levers": [
+      "policy",
+      "schema",
+      "calc_tools",
+      "evidence=dump"
+    ],
+    "turns": 4,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

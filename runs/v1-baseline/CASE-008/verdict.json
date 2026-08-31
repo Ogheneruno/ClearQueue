@@ -1,0 +1,36 @@
+{
+  "case_id": "CASE-008",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [],
+  "disposition": "APPROVE_FOR_PAYMENT",
+  "payable_amount": 5160.0,
+  "rationale": "INV-3310 matches the prior paid INV-3221 on vendor, PO and amount, but carries a distinct non-overlapping service period (March vs February 2026), so under clause 8.1 it is a legitimate recurring retainer charge, not a duplicate. PO-4408 is a SERVICES PO, so the absence of a goods receipt is not a defect (clause 1). Price and quantity match the blanket PO exactly, and recomputed tax at 7.5% of $4,800.00 is $360.00, equal to the billed figure (clause 5). Net payable $5,160.00 falls in the AP_CLERK band (clause 10).",
+  "required_approver_role": "AP_CLERK",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 818,
+    "output_tokens": 394,
+    "cache_read_input_tokens": 4161,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 6.76,
+    "cost_usd": 0.016021,
+    "version": "v1-baseline",
+    "levers": [
+      "policy",
+      "schema",
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

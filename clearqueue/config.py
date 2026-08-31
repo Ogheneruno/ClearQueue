@@ -14,6 +14,10 @@ Levers
 ``verifier``     a second model pass re-derives the arithmetic and can veto
 ``memory``       vendor facts carried across the queue
 ``confidence``   the removal experiment: let the model self-rate and skip verification
+``enforce_citations``
+                 reject a verdict that cites nothing, or cites a file that does not exist,
+                 and ask once more. Added after measurement showed the citation instruction
+                 was unenforced and unreliable -- see CHANGELOG.md.
 """
 
 from __future__ import annotations
@@ -32,6 +36,7 @@ class Version:
     verifier: bool = False
     memory: bool = False
     confidence: bool = False
+    enforce_citations: bool = False
     hypothesis: str = ""
 
     def tool_groups(self) -> list[str]:
@@ -46,7 +51,8 @@ class Version:
 
     def levers(self) -> list[str]:
         on = []
-        for f in ("policy", "schema", "calc_tools", "verifier", "memory", "confidence"):
+        for f in ("policy", "schema", "calc_tools", "verifier", "memory", "confidence",
+                  "enforce_citations"):
             if getattr(self, f):
                 on.append(f)
         on.append(f"evidence={self.evidence}")
@@ -121,13 +127,42 @@ VERSIONS: dict[str, Version] = {
                    "model is confidently wrong, so false approvals should rise even if "
                    "accuracy does not fall.",
     ),
+    # Not planned. Added after the scorer caught something the ladder was not built to look
+    # for: citation validity swung 100.0 -> 90.5 -> 76.2 -> 95.2 -> 71.4 across five runs
+    # that all carried the same citation instruction, including two runs of an identical
+    # lever set. The instruction was never enforced -- it was a sentence in a prompt.
+    "v6-enforce": Version(
+        name="v6-enforce",
+        headline="+ the harness rejects a verdict that cites nothing, or cites a file that "
+                 "does not exist, and asks once more.",
+        policy=True, schema=True, calc_tools=True, evidence="tools", enforce_citations=True,
+        hypothesis="Citation validity should stop being a coin flip. Resolution accuracy "
+                   "should not move at all -- the re-ask only asks for provenance, never "
+                   "for a different answer. If accuracy does move, the check is doing "
+                   "something it was not supposed to do and must come out.",
+    ),
 }
 
+# The shipping configuration is decided by the scorer, not by the build order. Two of the
+# five levers were removed after measurement:
+#
+#   verifier  v4 scored 91.7% / 90.5% citations at $0.1175 a case. It talked a correct
+#             CASE-020 answer down by a cent and confirmed the one false approval it existed
+#             to catch. 0 for 1.
+#   memory    v5 scored 95.8% / 76.2% citations at $0.1407 a case. No case changed hands.
+#
+# v3's lever set dominates both on every metric and costs the least, so that is what ships,
+# plus the one lever added afterwards: harness-enforced citations (v6). Anyone who wants the
+# second opinion in the review packet can run --version v4-verifier; the measured price of
+# it is in CHANGELOG.md.
 VERSIONS["final"] = Version(
     name="final",
-    headline="Shipping configuration: the survivors.",
-    policy=True, schema=True, calc_tools=True, evidence="tools", verifier=True, memory=True,
-    hypothesis="Whatever survived measurement.",
+    headline="Shipping configuration: the survivors — policy, schema, calculators, retrieval, "
+             "enforced citations. The verifier, the memory and the confidence field were "
+             "measured and cut.",
+    policy=True, schema=True, calc_tools=True, evidence="tools", enforce_citations=True,
+    hypothesis="v3's lever set plus the citation check that v3 showed was needed.",
 )
 
-LADDER = ["v0-naive", "v1-baseline", "v2-tools", "v3-evidence", "v4-verifier", "v5-memory"]
+LADDER = ["v0-naive", "v1-baseline", "v2-tools", "v3-evidence", "v4-verifier", "v5-memory",
+          "v6-enforce"]

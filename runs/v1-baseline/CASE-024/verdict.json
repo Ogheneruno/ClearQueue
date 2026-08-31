@@ -1,0 +1,39 @@
+{
+  "case_id": "CASE-024",
+  "citations": [
+    "invoice.json",
+    "po.json",
+    "receipt.json",
+    "vendor.json"
+  ],
+  "currency": "USD",
+  "defects": [
+    "Quantity shortfall: 52 EACH received against 60 EACH invoiced (8 kits refused at dock as damaged)"
+  ],
+  "disposition": "SHORT_PAY",
+  "payable_amount": 17888.0,
+  "rationale": "Receipt GR-7724 records only 52 of 60 kits accepted; 8 were refused damaged. Under clause 4 the shortfall is resolved in favour of the receipt and paid on received quantity: 52 x $320.00 = $16,640.00 net, plus recomputed 7.5% tax of $1,248.00 (clause 5) = $17,888.00. Supplier's tax rate was correct, so the only defect is the quantity shortfall — a single defect, no clause 11 escalation. Net payable falls in the AP_MANAGER band (clause 10).",
+  "required_approver_role": "AP_MANAGER",
+  "_meta": {
+    "model": "claude-opus-5",
+    "input_tokens": 760,
+    "output_tokens": 524,
+    "cache_read_input_tokens": 4161,
+    "api_calls": 1,
+    "tool_calls": 0,
+    "latency_s": 8.31,
+    "cost_usd": 0.018981,
+    "version": "v1-baseline",
+    "levers": [
+      "policy",
+      "schema",
+      "evidence=dump"
+    ],
+    "turns": 1,
+    "stop_reason": "end_turn",
+    "parse_failure": false,
+    "refused": false,
+    "files_read": [],
+    "verification": null
+  }
+}

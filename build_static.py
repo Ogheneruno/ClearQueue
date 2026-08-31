@@ -27,7 +27,13 @@ What is honestly missing, and says so on screen
 Nothing here invents data. Every payload is produced by calling the same functions `serve.py`
 calls, so the hosted numbers cannot drift from the served ones.
 
-    python build_static.py --out ..\\clearqueue-site
+Publishing, once:
+
+    git worktree add --orphan -b gh-pages ..\\clearqueue-pages
+    python build_static.py --out ..\\clearqueue-pages
+    cd ..\\clearqueue-pages && git add -A && git commit -m "Static replay" && git push -u origin gh-pages
+
+and thereafter the middle three lines again. `main` is never checked out or touched.
 """
 
 from __future__ import annotations
@@ -141,8 +147,15 @@ def build(out: Path) -> None:
         raise SystemExit("nothing to build: runs/recorded/ or cases/ is empty")
 
     if out.exists():
-        shutil.rmtree(out)
-    out.mkdir(parents=True)
+        # Wipe the contents, not the directory. The intended output is a `gh-pages` worktree,
+        # and its `.git` file is what makes it one -- deleting the directory outright would
+        # leave a worktree git still believes in but can no longer find.
+        for child in out.iterdir():
+            if child.name == ".git":
+                continue
+            shutil.rmtree(child) if child.is_dir() else child.unlink()
+    else:
+        out.mkdir(parents=True)
 
     # ---- the shell -------------------------------------------------------------------
     # app.js and style.css are copied, never rewritten. Only index.html is touched, and only
@@ -216,8 +229,9 @@ def build(out: Path) -> None:
 
 def main() -> int:
     ap = argparse.ArgumentParser(description="Pre-render the console for static hosting.")
-    ap.add_argument("--out", default="../clearqueue-site",
-                    help="output directory; wiped and rebuilt (default: ../clearqueue-site)")
+    ap.add_argument("--out", default="../clearqueue-pages",
+                    help="output directory; contents are rebuilt, .git is left alone "
+                         "(default: ../clearqueue-pages)")
     args = ap.parse_args()
     build(Path(args.out).resolve())
     return 0
